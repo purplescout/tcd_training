@@ -28,15 +28,15 @@ $.fugitiveDetail.set(args.data.attributes);
 function dataTransformation(_model) {
 	// Android will crash unless we explicitly cast _.model.attributes.captured
 	// to a Boolean (it's an integer)
-	var _captured = Boolean(_model.attributes.captured)
-    // toggle the capture button
-    $.capture_button.visible = !_captured;
-    // hide the map button for at-large fugitives
-    $.map_button.visible = _captured;
+	var captured = Boolean(_model.attributes.captured)
+	// toggle the capture button
+	$.capture_button.visible = !captured;
+	// hide the map button for at-large fugitives
+	$.map_button.visible = captured;
 
     return {
         name : _model.attributes.name,
-        captured : _captured ? "Captured" : "Not Captured",
+        captured : captured ? "Captured" : "Not Captured",
         image : _model.attributes.url || '/images/burglar.png',
     }
 }
