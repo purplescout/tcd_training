@@ -29,6 +29,8 @@ function dataTransformation(_model) {
 
     // toggle the capture button
     $.capture_button.visible = !_model.attributes.captured;
+    // hide the map button for at-large fugitives
+    $.map_button.visible = _model.attributes.captured;
 
     return {
         name : _model.attributes.name,
@@ -76,8 +78,8 @@ $.photo_button.addEventListener('click', function(_e) {
             }
             a.show();
         },
-        saveToPhotoGallery : false,
-        allowEditing : false,
+        saveToPhotoGallery : true,
+        allowEditing : true,
         mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO]
     };
 
@@ -90,6 +92,17 @@ $.photo_button.addEventListener('click', function(_e) {
 
 });
 
+// display the map
+$.map_button.addEventListener('click', function(_e) {
+    if (args.data.get("capturedLat")) {
+        var mapController = Alloy.createController('MapDetail', {
+            model : args.data
+        });
+        args.parentTab.open(mapController.getView());
+    } else {
+        alert('Not Captured Yet');
+    }
+});
 
 // delete the fugitive
 $.delete_button.addEventListener('click', function(_e) {
@@ -111,21 +124,52 @@ $.delete_button.addEventListener('click', function(_e) {
 
 // mark where the user was captured
 $.capture_button.addEventListener('click', function(_e) {
-    // update the model and save
-    var fugitiveModel = args.data;
-    fugitiveModel.set("captured", 1);
-    fugitiveModel.save();
+    Ti.Geolocation.purpose = 'Tracking down criminal scum';
+    if (Ti.Geolocation.locationServicesEnabled) {
+        if (Ti.Platform.osname === 'android') {
+            Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
+        } else {
+            Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
+        }
+        Ti.Geolocation.getCurrentPosition(function(e) {
+            if (!e.error) {
 
-    // force tables to update
-    Alloy.Collections.Fugitive.fetch();
+                // update the model and save
+                var fugitiveModel = args.data;
+                fugitiveModel.set("capturedLat", e.coords.latitude);
+                fugitiveModel.set("capturedLong", e.coords.longitude);
+                fugitiveModel.set("captured", 1);
+                fugitiveModel.save();
 
-    //on android, give a bit of a delay before closing the window...
-    if (Ti.Platform.osname == 'android') {
-        setTimeout(function() {
-            $.detailWindow.close();
-        }, 2000);
+                // force tables to update
+                Alloy.Collections.Fugitive.fetch();
+                
+                // tell the user they have captured the bounty
+                Ti.UI.createAlertDialog({
+                    title : "Success!",
+                    message : 'You have successfully captured ' + fugitiveModel.get('name')
+                }).show();
+
+                //on android, give a bit of a delay before closing the window...
+                if (Ti.Platform.osname == 'android') {
+                    setTimeout(function() {
+                        $.detailWindow.close();
+                    }, 2000);
+                } else {
+                    $.detailWindow.close();
+                }
+
+            } else {
+                Ti.UI.createAlertDialog({
+                    title : "Error",
+                    message : 'Geolocation failed. Do you have a location set on your Android emulator?'
+                }).show();
+            }
+        });
     } else {
-        $.detailWindow.close();
+        Ti.UI.createAlertDialog({
+            title : "Error",
+            message : "No Location Services"
+        }).show();
     }
-
 });

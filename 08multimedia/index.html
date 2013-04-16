@@ -275,8 +275,8 @@ $.galleryButton.addEventListener('click', function() {
     allowEditing: true,
     mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO]
   }
+  Ti.Media.openPhotoGallery(options);
 });
-Ti.Media.openPhotoGallery(options);
 
 					</code></pre>
 
@@ -302,8 +302,8 @@ $.galleryButton.addEventListener('click', function() {
     saveToPhotoGallery: true,
     mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO, Ti.Media.MEDIA_TYPE_VIDEO]
   }
+  Ti.Media.showCamera(options);
 });
-Ti.Media.showCamera(options);
 
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_camera">The options supported showCamera and openPhotoGallery are identical. So, you can write a single set of options, then do an if statement to load the gallery or camera. No code duplication that way! The simulator doesn't provide camera support. The Android emulator does, but it gives strange results so don't try to use it. </div></div>

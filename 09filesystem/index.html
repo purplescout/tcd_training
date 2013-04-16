@@ -140,7 +140,7 @@
 var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "myfile.txt");
 var blob = file.read();  // binary representation of blob (file)
 var textOfFile = blob.text;
-var path = blob.nativePath; // path to the file
+var path = file.nativePath; // path to the file
 var mimetype = blob.mimeType; 
 // dispose of file handle and blob
 file = null;
