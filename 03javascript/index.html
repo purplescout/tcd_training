@@ -381,7 +381,7 @@ var total = sum(100, 200);
 var getAsyncData = function(fn) {
   // this function does something that takes a long time to finish, 
   // such as getting data from the network
-  return fn(networkData);
+  fn(networkData);
 }
 var saveData = function(data) {
   // this function does something with the data when it's finally available
@@ -1069,9 +1069,9 @@ var button2 = new Button('bar');
 						<li class="l_moduletitanium3">Paths are relative to Resources directory</li>
 						<li class="l_moduletitanium4">Pass in live data the module will need (e.g. a user object)</li>
 						<li class="l_moduletitanium5">Require in any libraries/modules the module will need (e.g. your database module)</li>
-						<li class="l_moduletitanium6">Platform gotcha -- on iOS, a module has access to its parent's global object -- but don't count on it</li>
+						<li class="l_moduletitanium6">In Titanium, a module has access to its parent's global object -- but don't count on it</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_moduletitanium">In Titanium, modules are cached. So re-requiring a module (such as you database library) won't incur any sort of memory or performance hit. Paths are entered without the leading slash, relative to the Resources directory. As of this writing, modules on iOS have access to the caller's global object. That might change. You don't need it anyway--just pass in or require in the objects you need.</div></div>
+					<div class="slidenote"><div class="l_slidenote_moduletitanium">In Titanium, modules are cached. So re-requiring a module (such as you database library) won't incur any sort of memory or performance hit. Paths are entered without the leading slash, relative to the Resources directory. As of this writing, modules on iOS and Android have access to the caller's global object. That might change. You don't need it anyway--just pass in or require in the objects you need.</div></div>
 				</section>
 
 				<section>
