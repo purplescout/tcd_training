@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+Ti.API.info('args = ' + JSON.stringify(args))
 //
 // this is setting the view elements of the row view
 // which is found in views/row.xml based on the arguments
@@ -7,7 +8,9 @@ var args = arguments[0] || {};
 //$.thumbnail.image = args.image;
 $.parentController = args.parentTab;
 
-// add the datatransformation
+// add the datatransformation, Tony's busy!!
+// dataTransform is not wired up yet, but i
+// hacked it into my code
 $.fugitiveDetail = _.extend({}, $.fugitiveDetail, {
     transform : function() {
         return dataTransformation(this);
@@ -17,6 +20,7 @@ $.fugitiveDetail = _.extend({}, $.fugitiveDetail, {
 // instance variable used in data-binding
 // we do this set here to trigger the events
 // that will cause the data to be rendered
+Ti.API.info('args.data = ' + JSON.stringify(args.data))
 $.fugitiveDetail.set(args.data.attributes);
 
 /**
@@ -142,7 +146,8 @@ $.capture_button.addEventListener('click', function(_e) {
                 fugitiveModel.save();
                 
                 // save the fugitive to the cloud
-
+                var acs = require('acs');
+                acs.saveFugitive(fugitiveModel);
                 
                 // force tables to update
                 Alloy.Collections.Fugitive.fetch();

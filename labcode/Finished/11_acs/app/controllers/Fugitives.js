@@ -6,6 +6,7 @@ var fugitiveCollection = Alloy.Collections.Fugitive;
  * @param {Object} _collection
  */
 function dofilter(_collection) {
+    debugger;
     return fugitiveCollection.filter(function(_i){
         return !_i.attributes.captured
     });
@@ -25,6 +26,7 @@ function addNewFugitive() {
 // EVENT LISTENERS
 //
 $.table.addEventListener('click', function(_e) {
+Ti.API.info('_e:' + JSON.stringify(_e))
     var detailController = Alloy.createController('FugitiveDetail', {
         parentTab : $.fugitiveTab,
         data : fugitiveCollection.get(_e.rowData.model)

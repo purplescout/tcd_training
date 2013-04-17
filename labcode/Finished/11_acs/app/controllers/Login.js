@@ -7,14 +7,20 @@ if(acs.isLoggedIn()) {
 	Ti.API.info('not logged in')
 }
 
-// complete this function: If user is valid, hide the logincontainer view.
-// otherwise, change the submit button's title to "Try again..." and then back
 var createCallback = function(user) {
-};
+	if(user) {
+		$.logincontainer.hide();
+	} else {
+		$.submit.title = 'Try again ...';
+		setTimeout(1000, function(){
+			$.submit.title = 'Create Account';
+		})
+	}
+}
 
 $.submit.addEventListener('click', function() {
 	$.name.blur();
 	$.password.blur();
 	$.submit.title = 'Working ...';
-	// call your createUser() function here, passing the correct data
+	acs.createUser($.name.value, $.password.value, createCallback)
 });
