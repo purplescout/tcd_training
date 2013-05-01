@@ -104,10 +104,11 @@
 					<h2 style="" class="l_debughowto">Setting Breakpoints</h2>
 				    <img src="images/debugbuild.png" style="width:300px;float:right;"/>
 					<ul style="width:40%;">
-						<li class="l_debughowto1">With 'traditional' apps:<br/><ul style="margin:5px 0 10px 60px;"><li>Double-click margin</li><li>Do debug build</li></ul></li>
-						<li class="l_debughowto2">With Alloy apps:<br/><ul style="margin:5px 0 10px 60px;"><li>Add <code>debugger</code> statement</li><li>Do debug build</li></ul></li>
+						<li class="l_debughowto1">Margin-click method:<br/><ul style="margin:5px 0 10px 60px;"><li>Double-click margin</li><li>Do debug build</li></ul></li>
+						<li class="l_debughowto2">Debugger statement<br/><ul style="margin:5px 0 10px 60px;"><li>Add <code>debugger</code> statement</li><li>Do debug build</li></ul></li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_debughowto"></div></div>
+				    <img src="images/breakpoints.png" style="width:600px;"/>
+					<div class="slidenote"><div class="l_slidenote_debughowto">You can use either method to introduce a breakpoint into your app. The margin-click method will not work with TiSDK 3.0 through 3.0.2, though will work with SDK 3.1+ apps.</div></div>
 				</section>
 
 				<section>
@@ -127,12 +128,23 @@
 					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
 					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_trydebug">Debugging AlloyHunter</h5>
 					<ol style="width:80%;">
-						<li class="l_trydebug1">Add a <code>debugger;</code> statement to the Fugitives.js controller as the first statement in the table event listener.</li>
+						<li class="l_trydebug1">Add a breakpoint to the Fugitives.js controller as the first statement in the table event listener.</li>
 						<li class="l_trydebug2">Do a debug build of the app to the simulator/emulator.</li>
 						<li class="l_trydebug3">Click a row in the fugitives table.</li>
 						<li class="l_trydebug4">Examine the variables in memory, then step through a few lines of code.</li>
 					</ol>
 					<div class="slidenote"><div class="l_slidenote_trydebug">Students should do this, and you should demo or talk through the steps as they go.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ondevice">Debugging on Device</h2>
+					<ul style="width:80%;">
+						<li class="l_ondevice1">iOS: must have proper provisioning profiles set up</li>
+						<li class="l_ondevice2">iOS: must be on same WiFi network</li>
+						<li class="l_ondevice3">Android: must be USB tethered</li>
+						<li class="l_ondevice4">See Titanium Studio docs for additional details</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_ondevice">Studio docs are at docs.appcelerator.com. Expand the Titanium Studio branch. Then expand Titanium Development > Debugging Titanium Apps.</div></div>
 				</section>
 
 				<section>
@@ -255,9 +267,10 @@
 					<h2 style="" class="l_netconditioner">Network Link Conditioner</h2>
 				    <img src="images/networklineconditioner.png" style="width:500px;" class="noborder"/>
 					<ol style="width:60%;">
-						<li class="l_netconditioner1">Spotlight search 'Network Link Conditioner'</li>
-						<li class="l_netconditioner2">Select Install for all users of this computer</li>
-						<li class="l_netconditioner3">Installs to Settings app</li>
+						<li class="l_netconditioner1">In Xcode, choose Xcode > Open Developer Tool > More Developer Tools</li>
+						<li class="l_netconditioner2">Log into the Apple Developer Center</li>
+						<li class="l_netconditioner3">Download the Hardware IO Tools for Xcode</li>
+						<li class="l_netconditioner4">Double-click Network Link Conditioner.prefpane</li>
 					</ol>
 					<div class="slidenote"><div class="l_slidenote_netconditioner"></div></div>
 				</section>
