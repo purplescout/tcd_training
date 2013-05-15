@@ -137,6 +137,14 @@ li { padding-bottom: 5px;  }
 	height: 640px !important;
 	margin-left: -390px !important;
 	margin-top: -280px !important;
+	font-size: 60%;
+}
+.smallscreen pre {
+	font-size: 70% !important;
+	max-width: 80% !important;
+}
+.smallscreen img {
+	max-width: 40% !important;
 }
 
 #reveal .controls a {
