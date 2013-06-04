@@ -291,54 +291,8 @@ function foo(bar) {
 					<div class="slidenote"><div class="l_slidenote_ortrick">You'll see this shorthand if/else statement in many programmer's code. While strange at first, the technique saves many lines of code not to mention some potential errors if you simply omit any value testing.</div></div>
 				</section>
 
-
 				<section>
-					<h2 class="l_forloops">For Loops</h2>
-					<pre><code contenteditable>
-for(var i=0; i < 100; i++) {
-  // do something 100 times
-}
-					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_forloops">&nbsp;</div></div>
-				</section>
-
-				<section>
-					<h2 class="l_whileloops">While Loops</h2>
-					<pre><code contenteditable>
-while(somecondition) {
-  // do something till somecondition is no longer met
-}
-					</code></pre>
-					<ul style="width:80%;">
-						<li class="l_whileloop1">Make sure 'somecondition' will change and eventually be met or loop will run forever</li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_whileloops">&nbsp;</div></div>
-				</section>
-
-				<section>
-					<h2 class="l_switch">Switch</h2>
-					<pre><code contenteditable>
-switch(myVar) {
-  case 'foo':
-     // do something if myVar == 'foo'
-  break;
-  case 'bar':
-     // do something if myVar == 'bar'
-  break;
-  default:
-     // do something if neither of the above are met
-  break;
-}
-					</code></pre>
-					<ul style="width:80%;">
-						<li class="l_switch1">Compact if/else statement</li>
-					</ul>
-
-					<div class="slidenote"><div class="l_slidenote_switch">&nbsp;</div></div>
-				</section>
-
-				<section>
-					<h2 style="" class="l_functions">Functions</h2>
+					<h2 style="" class="l_functions">Function Declarations</h2>
 					<pre><code contenteditable>
 function sum(a, b) {
   // do as many statements as needed
@@ -454,17 +408,6 @@ if(cat.hasStripes == true) {
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_variables">Variables</h5>
 					<div class="slidenote"><div class="l_slidenote_variables">In this section, we'll cover some of the particulars and peculiarities of variables in JavaScript.</div></div>
-				</section>
-
-				<section>
-					<h2 style="" class="l_vtypes">Data Types</h2>
-					<ul style="width:80%;">
-						<li class="l_vtypes1">Primary (primitive) types &mdash; String, Number, Boolean</li>
-						<li class="l_vtypes2">Composite types &mdash; Object, Array</li>
-						<li class="l_vtypes3">Special types &mdash; Null, Undefined, NaN, Infinity</li>
-						<li class="l_vtypes4">Weakly typed &mdash; variables can hold differing values over their lifetime</li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_vtypes">JavaScript defines three primitive, two composite, and a few special data types. We associate these types with data values, not variables, because JavaScript is weakly or loosely typed. That means a variable can hold varying values during its lifetime. Each primitive and composite data type is associated with an object that offers class methods. For example, String offers methods for extracting portions of strings. There are no object classes backing the special data types. JavaScript doesn't make distinctions between types of Numbers (i.e. integers, real, etc.), or Strings (char vs string).</div></div>
 				</section>
 
 				<section>
@@ -907,68 +850,6 @@ console.log(son.foo); // undefined
 				</section>
 
 				<section>
-					<h2 style="" class="l_protochanges">Changing Prototypes</h2>
-					<pre style=""><code contenteditable>
-function Person() {
-  this.whoami = 'human';
-}
-function Alien() {
-  this.whoami = 'martian';
-}
-var fred = new Person();
-// force Fred's prototype to be Alien's prototype
-fred.__proto__ = Alien.prototype;
-
-console.log(fred instanceof Alien); // true
-
-// we can add new properties
-Alien.prototype.color = 'green';
-alert(fred.color); // green
-
-// but original values are preserved
-alert(fred.whoami); // human!
-
-// the Person connection is now broken
-Person.prototype.arms = 2;
-alert(fred.arms); // undefined
-					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_protochanges">We can manually break parent/child associations by changing an object's prototype. In this situation, we have to set the child object's __proto__ property to be the prototype property of the parent. See the next slide for more info on the differences between proto and prototype.</div></div>
-				</section>
-
-				<section>
-					<h2 class="l_proto" style="font-variant:normal !important;">__proto__ vs prototype</h2>
-					<ul style="width:40%;float:left;">
-						<li class="l_proto1">Every function has a <code>prototype</code> property</li>
-						<li class="l_proto2">It refers to the object that will be assigned as the prototype of the resulting object</li>
-						<li class="l_proto3">Thus <code>obj.__proto__</code> refers to an object's parent</li>
-						<li class="l_proto4"> and <code>obj.prototype</code> refers to the object that is created by the parent constructor</li>
-					</ul>
-					<pre style="width:550px;float:right;"><code contenteditable>
-var Circle = function(radius) {
-    this.radius = radius;
-    //next line is implicit
-    //this.__proto__ = Circle.prototype;
-}
-
-// augment Circle's default prototype property
-// thereby augmenting each new instance
-Circle.prototype.area = function() {
-   return Math.PI*this.radius*this.radius;
-}
-
-var a = new Circle(3);
-alert(a.area().toFixed(2)); //28.27
-
-alert(a.__proto__ == a.prototype); // false
-
-alert(a.__proto__ == Circle.prototype); // true
-
-					</code></pre>
-
-					<div class="slidenote"><div class="l_slidenote_proto">While the difference is subtle, it is important. Functions have a prototype property; objects have a __proto__ property. A function's prototype property points to the object (ie. the class) that will be returned. An object's proto property points to its parent. To add new class methods, either assign them to the function's prototype property or an instance's __proto__ property.<br/><br/>Ref: http://javascriptweblog.wordpress.com/2010/06/07/understanding-javascript-prototypes/</div></div>
-				</section>
-
-				<section>
 					<h2 style="" class="l_parasitic">Parasitic Inheritance</h2>
 					<p class="l_parasiticpara">Simple pattern for inheritance in JavaScript.</p>
 					<pre><code contenteditable>
@@ -983,7 +864,6 @@ var Employee = function(name, age, group) {
 };
 var alex = new Employee('Alejandro', 25, 'Developer');
 					</code></pre>
-					<p class="l_parasiticexplanation">(Works with <code>__proto__</code> so you don't have to!)</p>
 					<p style="clear:both;text-align:right;padding-top:20px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
 					<div class="slidenote"><div class="l_slidenote_parasitic">This syntax is perhaps the more typical way that developers will subclass or extend objects. Here we see two constructors. The second instantiates a Person object, adds properties, then returns it. This is simpler code than working directly with __proto__ and prototype, and thus eliminates a bunch of confusion. Ref: http://daniel.carrera.name/2008/02/parasitic-inheritance-in-javascript/</div></div>
 				</section>
@@ -1100,37 +980,6 @@ myFunc({
   height: 1, width: 2, left: 1, right: 3
 }); // much clearer
 					</code></pre>
-<div class="fragment">
-					<pre style="clear:both;width:450px;float:left;"><code contenteditable>
-// http://en.wikipedia.org/wiki/JSDoc
-/**
- * Creates an instance of Circle.
- *
- * @constructor
- * @this {Circle}
- * @param {number} r The desired radius of the circle.
- */
-					</code></pre>
-
-					<pre style="width:550px;float:right;"><code contenteditable>
-// http://www.naturaldocs.org/
-/*
- Function: Multiply
-
- Multiplies two integers.
-
- Parameters:
-
-    x - The first integer.
-    y - The second integer.
-
- Returns:
-
-    The two integers multiplied together.
-
-*/
-					</code></pre>
-</div>
 					<div class="slidenote"><div class="l_slidenote_maintain">Readable code is maintainable code. Whether you or some other developer has to revisit your code later, you want the developer to be able to quickly understand your code so changes and fixes can be implemented. <br/><br/>Name variables reasonably -- not too short and not too long. Be consistent with spacing and indentation; follow your company or co-worker's conventions. Liberally use comments especially to explain dense or potentially confusing code. While Titanium's tooling doesn't directly support the standard JS documentation formats, following those conventions is still a good idea. Plus, you could run your Titanium files through a JSDoc/Natural Docs processor to create code documentation.</div></div>
 				</section>
 
@@ -1199,18 +1048,6 @@ for(var i=0; i < 100; i++) {
 
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_perfloops">Loops by their nature are very sensitive to even small optimizations. Thus, take the time to implement features like shown here. The last bullet shown in code: while operators are only a tiny bit faster than functions, in a long-running loop this difference matters.</div></div>
-				</section>
-
-				<section>
-					<h2 style="" class="l_tiperf">Titanium Performance Tips</h2>
-					<p class="l_tiperfpara">From the "You'll just have to believe us" category ...</p>
-
-					<ul style="width:80%;">
-						<li class="l_tiperf1">Event listeners are slower than callbacks &mdash; use callbacks rather than app-level events</li>
-						<li class="l_tiperf2">Take advantage of the build-time optimization features. They're a lot faster than if(platformTest) statements</li>
-						<li class="l_tiperf3">Don't extend the Titanium proxies</li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_tiperf">We haven't learned much about Titanium and its JavaScript environment yet. So, these are all "just believe us" types of tips. Once you've worked through the rest of the lessons, these items will make more sense.<br/><br/>Event listeners are slower than callbacks &mdash; I realize we haven't dug into event listeners yet. But keep in mind that you should use callbacks instead.<br/><br/>Titanium and Alloy offer build-time optimization techniques that create much faster code than testing to see if you're running on Android or iOS. Use those techniques.<br/><br/>Don't extend the built-in Titanium objects. You app could crash or hang.</div></div>
 				</section>
 
 
