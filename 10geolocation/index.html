@@ -201,7 +201,20 @@
 				</section>
 
 				<section>
-					<h2 style="" class="l_mapalloy">Maps View</h2>
+					<h2 style="" class="l_mapprocedures">Android vs. the Rest</h2>
+					<img src="images/androidmapsmodule.png" style="width:25%;float:right;"/>
+					
+					<ul style="width:65%;float:left;">
+						<li class="l_mapprocedures1">Android requires use of the new Google Maps API version 2<br/>&nbsp;&nbsp;<em>unless you happen to have an API v1 key already</em></li>
+						<li class="l_mapprocedures2">Support is through an external module</li>
+						<li class="l_mapprocedures3">Currently, the map must be added in the controller not the View XML</li>
+						<li class="l_mapprocedures4">Remaining platforms can use Views &amp; Styles</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_mapprocedures">The new API and new module give you advanced features over Ti.Maps. These include:<ul><li>Multiple maps in an app</li><li>Pinch, zoom, rotate</li><li>More rendering options</li><li>Improved performance</li></ul></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_mapalloy">Maps View on iOS</h2>
 					<pre style=""><code contenteditable>
 &lt;Alloy>
   &lt;Window class='container'>
@@ -258,17 +271,76 @@
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_maptss"></div></div>
 				</section>
-				
-				
+
+				<section>
+					<h2 style="" class="l_androidmapsgeneral">Android Maps: General Procedure</h2>
+					<ol style="width:80%;">
+						<li class="l_androidmapsgeneral1">Obtain an API key from Google</li>
+						<li class="l_androidmapsgeneral2">Update tiapp.xml with that key</li>
+						<li class="l_androidmapsgeneral3">Enable module in tiapp.xml</li>
+						<li class="l_androidmapsgeneral4">Require the module in JavaScript</li>
+						<li class="l_androidmapsgeneral5">Instantiate &amp; style your map in JavaScript</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_androidmapsgeneral"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_apikey">Obtaining an API key</h2>
+					<ol style="width:80%;">
+						<li class="l_apikey1">Get your app's SHA-1 fingerprint</li>
+						<li class="l_apikey2">Visit <a href="https://code.google.com/apis/console/">Google's API console</a></li>
+						<li class="l_apikey3">Click Create Project or select project name, click Create</li>
+						<li class="l_apikey4">turn on Google Maps Android API v2</li>
+						<li class="l_apikey5">Click API Access, then click Create New Android Key</li>
+						<li class="l_apikey6">Paste your SHA-1 fingerprint, a semicolon, then your app's App ID</li>
+						<li class="l_apikey7">Save the resulting "Key for Android Apps (with certificates)"</li>
+					</ol>
+					<img src="images/keytool.png" style="width:70%;" class="noborder"/>
+					<div class="slidenote"><div class="l_slidenote_apikey">Get your SHA fingerprint from your keystore, which means you must have created an entry for your app. You can use our debug keystore during development and testing but have to publish using your own. The command shown is to access our debug keystore. You'd use a different path &amp; file for your own keystore.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_tiapp">Update tiapp.xml</h2>
+					<ol style="width:80%;">
+						<li class="l_tiapp1">Download module from Marketplace, and install</li>
+						<li class="l_tiapp2">Copy sample XML from <a href="http://docs.appcelerator.com/titanium/latest/#!/guide/Google_Maps_v2_for_Android">the docs</a> into your tiapp.xml</li>
+						<li class="l_tiapp3">Edit the three highlighted locations</li>
+					</ol>
+					<img src="images/tiappxml.png" style="width:70%;"/>
+					<div class="slidenote"><div class="l_slidenote_tiapp">Despite what the docs say, you have to download the module from the Marketplace. </div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_addcode">Implement Map in the Controller</h2>
+					<pre style=""><code contenteditable>
+if(OS_ANDROID) {
+  var MapModule = require('ti.map');
+  var map = MapModule.createView({
+    userLocation: true,
+    mapType: MapModule.NORMAL_TYPE,
+    animate: true,
+    region: {
+	  latitude: -33.87365, longitude: 151.20689,
+	  latitudeDelta: 0.1, longitudeDelta: 0.1
+	},
+    height: '50%',
+    top: 0,
+    left: 0,
+    width: '50%'
+  });
+  $.window.add(map);
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_addcode"></div></div>
+				</section>
+
+
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
 					<h2 style="" class="l_demo">Maps Demo</h2>
-					<ul style="width:80%;">
-						<lh class="ldemoheading">KitchenSink Map demos</li>
-						<li class="l_demo1">Base UI > Views > Map View</li>
-						<li class="l_demo2">examples/map_view.js</li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo">KitchenSink: <ul><li>embedded map</li><li>discuss annotation components</li><li>map types</li><li>zooming</li><li>user location (no default on Android)</li></ul>examples/map_view.js<ul><li>~line 22 createAnnotation()</li><li>~line 60 createMapView()</li><ul><li>mapType reference API docs</li><li>region: lat/long &amp; delta</li><li>userLocation</li><li>annotations</li></ul></div></div>
+				    <img src="images/androidmapsmodule.png" style="width:300px;"/>
+				    <img src="images/iosmaps.png" style="width:300px;"/>
+					<div class="slidenote"><div class="l_slidenote_demo">The MapsDemo app is provided in the labcode/Demos folder. The View XML code and associated TSS file provide the map on iOS. The controller code implements the Android maps module and creates the four-map view as shown here.</div></div>
 				</section>
 
 
