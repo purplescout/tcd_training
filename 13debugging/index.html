@@ -147,15 +147,34 @@
 					<div class="slidenote"><div class="l_slidenote_ondevice">Studio docs are at docs.appcelerator.com. Expand the Titanium Studio branch. Then expand Titanium Development > Debugging Titanium Apps.</div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
-					<h2 class="l_titanium_studio">Titanium Studio and the SDKs</h2>
-					<p align="left" class="l_python">Titanium Studio build scripts -- node.js or python (depending on SDK version)</p>
-					<p align="left" class="l_scripts">Those scripts interact with native tool chains</p>
-					<p align="left" class="l_mobile_sdk">Therefore, Titanium Mobile SDK requires and is dependent on these native tool chains</p>
-				    <p align="center"><img src="images/sdktools2x.png" style="width:450px;"/> <img src="images/sdktools3x.png" style="width:450px;margin-bottom:28px;"/></p>
-					<div class="slidenote"><div class="l_slidenote_titanium_studio"><b>Slide Flow</b><br>
-					Titanium Studio calls the build scripts in the mobile SDK<br>
-					<b>Demo:</b> Navigate to the mobile SDK directory on the filesystem, show build scripts and brief explanation of what they are used for (invoking the compilers, shipping to a device)<br>Since the build scripts interface with command line tools like adb, the native SDKs are a hard requirement for mobile development.</div></div>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_platformtopic">Appcelerator Platform Tools</h5>
+					<div class="slidenote"><div class="l_slidenote_platformtopic"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_perf">Appcelerator Performance Management</h2>
+				    <img src="images/appcperformance.png" style="width:75%;"/>
+					<div class="slidenote"><div class="l_slidenote_perf">Performance Management lets you monitor exceptions and crashes in your apps. Stats are sent live to the Dashboard. You can set breadcrumbs (text strings) that are visible on the Dashboard to help you note what conditions or actions led to the error condition.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_test">Appcelerator Test</h2>
+				    <img src="images/appctest.png" style="width:75%;"/>
+					<div class="slidenote"><div class="l_slidenote_test">Test enables you to create automated tests for your apps, run on device or simulator/emulator.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_codeanalysis">Code Analysis</h2>
+					<ul style="width:50%;float:left;">
+						<li class="l_codeanalysis1">Code Analyzer</li>
+						<li class="l_codeanalysis2">Code Profiler</li>
+						<li class="l_codeanalysis3">Currently, only "traditional" apps, not Alloy</li>
+					</ul>
+				    <img src="images/codeanalysis.png" style="width:45%;float:right;"/>
+					<div class="slidenote"><div class="l_slidenote_codeanalysis">Code Analyzer looks for code that might cause problems -- accessing APIs not supported on a given platform, runtime-error detection, deprecated Titanium API warnings, etc. Code Profiler provides performance data to help you identify bottlenecks in your app.</div></div>
 				</section>
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
@@ -203,14 +222,14 @@
 
 				<section>
 					<h2 style="" class="l_monitor">Android Monitor</h2>
-				    <img src="images/monitor.png" style="margin-top:15px;height:500px;"/>
+				    <img src="images/monitor.png" style="margin-top:15px;height:500px;" class="noborder"/>
 					<div class="slidenote"><div class="l_slidenote_monitor">With the Android Monitor you can monitor threads, processes and memory in Android emulated or target devices.</div></div>
 				</section>
 
 
 				<section>
 					<h2 class="l_dalvik_debug_monitor">Dalvik Debug Monitor</h2>
-					<img src="images/dalvik-debug-monitor.png" style="margin-top:15px;height:500px;"/>
+					<img src="images/dalvik-debug-monitor.png" style="margin-top:15px;height:500px;" class="noborder"/>
 					<div class="slidenote"><div class="l_slidenote_dalvik_debug_monitor">If you're using an older version of the Android SDK, you can use the DDMS tool instead of Monitor to perform the same tasks.</p>
 					</div>
 				</section>
