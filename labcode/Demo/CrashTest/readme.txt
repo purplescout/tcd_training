@@ -1,3 +1,5 @@
+You will need an account on the Appcelerator Dashboard and a license for Appcelerator Studio to use this demo app.
+
 The CrashTest app will need to be associated with your user ID and will need a unique GUID. Therefore, we're not providing a full, importable project. To use this app:
 
 1. Create a new project named CrashTest
