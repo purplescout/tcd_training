@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1
+apiversion: 2
+description: Crashes
+author: Blain Hamon
+license: Something
+copyright: Appcelerator
+
+
+# these should not be edited
+name: CrashTestDummy
+moduleid: com.appcelerator.crashtestdummy
+guid: 3b20ef3c-821f-4baa-bb29-decb8975cf58
+platform: iphone
+minsdk: 3.1.0.GA

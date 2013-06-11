@@ -1,0 +1,8 @@
+<Alloy>
+	<Window class="container">
+		<Label id="label">Appcelerator Performance Management</Label>
+		<Button id="err">Throw JavaScript Error</Button>
+		<Button id="crash">Hard Crash</Button>
+		<Button id="uncaught">Uncaught Native Exception</Button>
+	</Window>
+</Alloy>
