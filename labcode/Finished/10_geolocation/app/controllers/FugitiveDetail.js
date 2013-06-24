@@ -113,7 +113,7 @@ $.delete_button.addEventListener('click', function(_e) {
     Alloy.Collections.Fugitive.fetch();
 
     //on android, give a bit of a delay before closing the window...
-    if (Ti.Platform.osname == 'android') {
+    if (OS_ANDROID) {
         setTimeout(function() {
             $.detailWindow.close();
         }, 2000);
@@ -126,7 +126,7 @@ $.delete_button.addEventListener('click', function(_e) {
 $.capture_button.addEventListener('click', function(_e) {
     Ti.Geolocation.purpose = 'Tracking down criminal scum';
     if (Ti.Geolocation.locationServicesEnabled) {
-        if (Ti.Platform.osname === 'android') {
+        if (OS_ANDROID) {
             Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
         } else {
             Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
@@ -151,7 +151,7 @@ $.capture_button.addEventListener('click', function(_e) {
                 }).show();
 
                 //on android, give a bit of a delay before closing the window...
-                if (Ti.Platform.osname == 'android') {
+                if (OS_ANDROID) {
                     setTimeout(function() {
                         $.detailWindow.close();
                     }, 2000);

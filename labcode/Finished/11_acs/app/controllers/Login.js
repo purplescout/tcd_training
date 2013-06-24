@@ -12,11 +12,11 @@ var createCallback = function(user) {
 		$.logincontainer.hide();
 	} else {
 		$.submit.title = 'Try again ...';
-		setTimeout(1000, function(){
+		setTimeout(function(){
 			$.submit.title = 'Create Account';
-		})
+		}, 1000);
 	}
-}
+};
 
 $.submit.addEventListener('click', function() {
 	$.name.blur();
