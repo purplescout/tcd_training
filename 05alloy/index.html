@@ -507,14 +507,26 @@ $.rowView.url = args.url || '';
 				<section>
 					<h1 class="l_platform">Platform &amp; Form Factor</h1>
 				<ul style="width:80%;">
-					<li class="l_platform1">Conditional code</li>
 					<li class="l_platform2">App assets</li>
-					<li class="l_platform3">Platform Build-time Folders</li>
+					<li class="l_platform1">Conditional code</li>
 					<li class="l_platform4">Markup-based Techniques</li>
 					<li class="l_platform5">TSS-based Qualifiers</li>
+					<li class="l_platform3">Platform Build-time Folders</li>
 				</ul>
 
 					<div class="slidenote"><div class="l_slidenote_platform"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_assetfolders">Asset Folders</h2>
+					<p class="l_assetimg"><img src="images/platformassets.png"/></p>
+					<div class="slidenote"><div class="l_slidenote_assetfolders">
+<ul style="width:80%;">
+<li class="l_fassets1">Put in app/assets; they're copied to the Resources directory when you build</li>
+<li class="l_fassets2">Same subdirectories as without Alloy</li>
+<li class="l_fassets3">Put your libraries and "includes" in the lib folder</li>
+</ul>
+</div></div>
 				</section>
 
 				<section>
@@ -537,23 +549,6 @@ if (ENV_DEV && OS_IOS) {
 <li>ENV_TEST: true if the current compiler target is build for test (run on device)</li>
 <li>ENV_PRODUCTION: true if the current compiler target is build for product (run after packaged for install)</li></ul>
 					</div></div>
-				</section>
-
-				<section>
-					<h2 class="l_assetfolders">Asset Folders</h2>
-					<p class="l_assetimg"><img src="images/platformassets.png"/></p>
-					<div class="slidenote"><div class="l_slidenote_assetfolders">
-<ul style="width:80%;">
-<li class="l_fassets1">Put in app/assets; they're copied to the Resources directory when you build</li>
-<li class="l_fassets2">Same subdirectories as without Alloy</li>
-<li class="l_fassets3">Put your libraries and "includes" in the lib folder</li>
-</ul>
-</div></div>
-				</section>
-				<section>
-					<h2 class="l_platformoverrides">Platform Overrides</h2>
-					<p class="l_poverridesimg"><img src="images/platformfolders.png"/></p>
-					<div class="slidenote"><div class="l_slidenote_platformoverrides">You can create platform-specific versions of views, controllers, and models to override base behavior. Simple create platform directories within the /app/controllers, etc. folders and put your override files there.</div></div>
 				</section>
 
 				<section>
@@ -599,6 +594,12 @@ text: "iPhone"
 
 				</code></pre>
 					<div class="slidenote"><div class="l_slidenote_pselectors">You can use device queries in your Styles files to apply styles in very narrow cases, such as for iPads only.</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_platformoverrides">Platform Overrides</h2>
+					<p class="l_poverridesimg"><img src="images/platformfolders.png"/></p>
+					<div class="slidenote"><div class="l_slidenote_platformoverrides">You can create platform-specific versions of views, controllers, and models to override base behavior. Simple create platform directories within the /app/controllers, etc. folders and put your override files there.</div></div>
 				</section>
 
 			<section>
