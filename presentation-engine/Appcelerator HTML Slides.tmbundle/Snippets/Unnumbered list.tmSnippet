@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>					&lt;ul style="width:80%;"&gt;
+						&lt;li class="l_${1:BULLET}1"&gt;&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}2"&gt;&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}3"&gt;&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}4"&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+</string>
+	<key>name</key>
+	<string>Unnumbered list</string>
+	<key>tabTrigger</key>
+	<string>ul</string>
+	<key>uuid</key>
+	<string>47A6DC1B-3EAB-47DD-869F-B052686A227F</string>
+</dict>
+</plist>
