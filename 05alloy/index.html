@@ -205,14 +205,6 @@ exports.definition = {
 				</section>
 
 				<section>
-					<h2 style="" class="l_demoA">Alloy App Walk-through</h2>
-					<p class="l_demoApara">AlloyHunter</p>
-					<p class="l_demoApara2">(In the labcode folder in the slides you downloaded)</p>
-					<p class="l_demoAurl" style="margin-top:50px;font-size:smaller; font-style: italic;">Adapted from https://github.com/aaronksaunders/alloy_fugitive</p>
-					<div class="slidenote"><div class="l_slidenote_demoA">Start by running the AlloyHunter app so that students see the end result.<br/><br/>Then, show the views, styles, controllers, and models files. Be brief! Your goal is not to fully explain each of the files. Instead, you want to illustrate how these files work together to create the app and its functionality.</div></div>
-				</section>
-
-				<section>
 					<h2 style="" class="l_convention">Convention over Configuration</h2>
 <table border="0" cellspacing="5" cellpadding="5">
 	<tr><th>File/Directory</th><th>Contents &amp; Purpose</th></tr>
@@ -257,6 +249,14 @@ exports.definition = {
 		<td>Files and assets associated with widgets (self-contained app components)</td>
 	</tr>
 </table>					<div class="slidenote"><div class="l_slidenote_convention">Show these folder locations in the AlloyHunter project.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_demoA">Alloy App Walk-through</h2>
+					<p class="l_demoApara">AlloyHunter</p>
+					<p class="l_demoApara2">(In the labcode folder in the slides you downloaded)</p>
+					<p class="l_demoAurl" style="margin-top:50px;font-size:smaller; font-style: italic;">Adapted from https://github.com/aaronksaunders/alloy_fugitive</p>
+					<div class="slidenote"><div class="l_slidenote_demoA">Start by running the AlloyHunter app so that students see the end result.<br/><br/>Then, show the views, styles, controllers, and models files. Be brief! Your goal is not to fully explain each of the files. Instead, you want to illustrate how these files work together to create the app and its functionality.</div></div>
 				</section>
 
 
@@ -344,6 +344,78 @@ exports.definition = {
 
 					<div class="slidenote"><div class="l_slidenote_tss"><ul><li>Cascade order: component &lt; class &lt; ID</li><li>Set app-level styles with app.tss file. View-specific TSS overrides app.tss.</li><li>You can use any of the Ti constants, such as Ti.UI.SIZE</li><li>You can use the i18n functions, such as L()</li><li>The expr() expression has been deprecated. You might see it in some older samples and docs. With it, valid JavaScript within expr() was evaluated at runtime. Now, you'd define the runtime value in the global configuration file and refer to it as shown here in your TSS file.</li></ul></div></div>
 				</section>
+
+				<section>
+					<h2 style="" class="l_stylesgen">Styles Generation</h2>
+					<p class="l_stylesgenpara">Create or update the TSS for a controller</p>
+
+					<pre style=""><code contenteditable>
+// at a command prompt/terminal:
+alloy generate style <em>controller_name</em>
+
+// generate TSS for all controllers
+alloy generate style --all
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_stylesgen">You can generate, or update, all of the TSS entries for a particular controller by using the first command shown here. Use the second to create/update all of the controller's TSS files.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_autostyle">Dynamic Styling</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_autostyle3">Add/remove classes to components</li>
+						<li class="l_autostyle4">Create style objects at run-time</li>
+						<li class="l_autostyle1">Dynamic styling is not enabled by default</li>
+						<li class="l_autostyle2">Enable with <code>autoStyle</code> property</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+// for individual component
+&lt;View autoStyle="true">
+
+// for all components in controller
+&lt;Alloy autoStyle="true">
+
+// for whole project, set in config.json
+{
+	"autoStyle": false
+}
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_autostyle">There is a small performance overhead for using this feature and should only be enabled on components that use this feature. By default, autostyle is disabled.</div></div>
+				</section>
+				<section>
+					<h2 style="" class="l_modTSS">Dynamic Styles - Add/remove Classes</h2>
+					<pre style=""><code contenteditable>
+// $.button is a Ti.UI.Button in this controller
+
+// now add classes to the button
+$.addClass($.button, 'my_TSS_class another_class some_other_class');
+
+// remove a class
+$.removeClass($.button, 'some_other_class');
+
+// reset styles, then apply a class
+$.resetClass($.button, 'my_TSS_class');
+
+myWindow.getView().open();
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_modTSS">Alloy 1.2 added the ability to dynamically generate styles, add and remove classes, and to reset styles back to the starting conditions. Check the documentation for examples and full details.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_dynstyles">Dynamic Styles - Create a Style object</h2>
+					<pre style=""><code contenteditable>
+// $.button is a Ti.UI.Button in this controller
+var style = $.createStyle({
+   classes: 'my_TSS_class',
+   apiName: 'Button', /* or Ti.UI.Button */
+   color: 'blue' /* optional, explicit property to set */
+});
+$.button.applyProperties(style);
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_dynstyles"></div></div>
+				</section>
+
 
 				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
 				<section>
