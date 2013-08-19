@@ -4,10 +4,10 @@
 <dict>
 	<key>content</key>
 	<string>					&lt;ul style="width:80%;"&gt;
-						&lt;li class="l_${1:BULLET}1"&gt;&lt;/li&gt;
-						&lt;li class="l_${1:BULLET}2"&gt;&lt;/li&gt;
-						&lt;li class="l_${1:BULLET}3"&gt;&lt;/li&gt;
-						&lt;li class="l_${1:BULLET}4"&gt;&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}1"&gt;${2:}&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}2"&gt;${3:}&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}3"&gt;${4:}&lt;/li&gt;
+						&lt;li class="l_${1:BULLET}4"&gt;${5:}&lt;/li&gt;
 					&lt;/ul&gt;
 </string>
 	<key>name</key>

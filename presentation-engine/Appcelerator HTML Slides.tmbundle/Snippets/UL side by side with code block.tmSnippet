@@ -3,18 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>					&lt;ol style="width:80%;"&gt;
+	<string>					&lt;ul style="width:40%;float:left;"&gt;
 						&lt;li class="l_${1:BULLET}1"&gt;${2:}&lt;/li&gt;
 						&lt;li class="l_${1:BULLET}2"&gt;${3:}&lt;/li&gt;
 						&lt;li class="l_${1:BULLET}3"&gt;${4:}&lt;/li&gt;
 						&lt;li class="l_${1:BULLET}4"&gt;${5:}&lt;/li&gt;
-					&lt;/ol&gt;
+					&lt;/ul&gt;
+					&lt;pre style="width:${6:550}px;float:right;"&gt;&lt;code contenteditable&gt;
+${7:code}
+					&lt;/code&gt;&lt;/pre&gt;
 </string>
 	<key>name</key>
-	<string>Numbered list</string>
+	<string>UL side by side with code block</string>
 	<key>tabTrigger</key>
-	<string>ol</string>
+	<string>ulcode</string>
 	<key>uuid</key>
-	<string>02B6C957-3B49-490D-BFB9-8180AF2B51EC</string>
+	<string>4BFB3053-0F56-4412-9C8F-6AF70F449786</string>
 </dict>
 </plist>

@@ -3,12 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>&lt;tr&gt;
-	&lt;td colspan="2" class="labinstructions l_labstep${1:STEP_NUMBER}"&gt;${2:STEP_INSTRUCTIONS}&lt;/td&gt;
+	<string>&lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;tr&gt;
+	&lt;td colspan="2" class="labinstructions l_labstep${1:STEP_NUMBER}"&gt;${1:STEP_INSTRUCTIONS}. ${2:}&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td class="tdfiller"&gt;&lt;!-- leave empty--&gt;&lt;/td&gt;
-	&lt;td class="labexplanations l_labstepexplanation${1:STEP_NUMBER}"&gt;${3:EXPLANATION_AND_FURTHER_INFO}&lt;/td&gt;
+	&lt;td class="labexplanations l_labstepexplanation${1:STEP_NUMBER}"&gt;&lt;/td&gt;
 &lt;/tr&gt;
 </string>
 	<key>name</key>

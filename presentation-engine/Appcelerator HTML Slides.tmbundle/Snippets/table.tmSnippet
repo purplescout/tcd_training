@@ -21,6 +21,7 @@
 							&lt;td class="l_${1:CLASSNAME}3right"&gt;&lt;/td&gt;
 						&lt;/tr&gt;
 					&lt;/table&gt;
+
 </string>
 	<key>name</key>
 	<string>table</string>

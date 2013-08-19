@@ -3,15 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>					&lt;pre style="${1:width:450px;float:right;}"&gt;&lt;code contenteditable&gt;
-${2:code}
-					&lt;/code&gt;&lt;/pre&gt;
-</string>
+	<string>&lt;li&gt;$1&lt;/li&gt;</string>
 	<key>name</key>
-	<string>Code block</string>
+	<string>li</string>
 	<key>tabTrigger</key>
-	<string>code</string>
+	<string>li</string>
 	<key>uuid</key>
-	<string>680DFD37-8B07-4E17-8CC7-B974ABA6B172</string>
+	<string>8CBBDE0F-634F-40CC-959B-541E496A5F61</string>
 </dict>
 </plist>
