@@ -465,7 +465,7 @@ console.log(one); // throws error
 				</section>
 
 				<section>
-					<h2 style="" class="l_hoisting">Variable Hoisting</h2>
+					<h2 style="" class="l_hoisting1">Variable Hoisting</h2>
 					<ul style="width:40%;float:left;">
 						<li class="l_hoisting1">Var declarations moved to top</li>
 						<li class="l_hoisting2">Var initializations are not</li>
@@ -501,6 +501,27 @@ var baz = function() {
 
 					<div class="slidenote"><div class="l_slidenote_hoisting">Variable declarations are treated as if they were put at the top of the file, but not their initialiation (value assignment). The same is true for function declarations, in which case the entire assignment is moved to the top! That doesn't happen with function statements, though.</div></div>
 				</section>
+
+				<section>
+					<h2 style="" class="l_hostingtryit">What's the Output?</h2>
+					<pre style=""><code contenteditable>
+var OS_ANDROID = true;
+if(OS_ANDROID) {
+   function foo() {
+      console.log('I am Android');
+   }
+} else {
+   function foo() {
+      console.log('I am NOT Android');
+   }
+}
+foo();
+					</code></pre>
+					<p class="l_hoistinganswer fragment" style="width: 80%">Answer: I am NOT Android &mdash; because declaration of foo() is hoisted!</p>
+					<p style="clear:both;text-align:right;position:relative;top:-30px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
+					<div class="slidenote"><div class="l_slidenote_hostingtryit"></div></div>
+				</section>
+
 
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>

@@ -459,38 +459,57 @@ Ti.App.addEventListener('databaseUpdated', function() {
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_appextras">Icons, Splash screens, i18n</h5>
-					<div class="slidenote"><div class="l_slidenote_appextras"></div></div>
+					<div class="slidenote"><div class="l_slidenote_appextras">The goal here is to show you that you can specify icons and splash screens for the various operating systems and devices. Please don't worry over memorizing the various file names and sizes. They are all documented here in the slides and in our guides.</div></div>
 				</section>
+
+
 
 				<section>
 					<h2 style="" class="l_appiconsios">App icons - iOS</h2>
-<table border="0" cellspacing="5" cellpadding="5">
-	<tr><th>File name</th><th>Applies To</th></tr>
+<table border="0" cellspacing="5" cellpadding="5" style="font-size: 0.9em !important;">
 	<tr>
-		<td>appicon.png</td><td>Non-retina iPhone/iPod</td>
+		<th style="border-right: 1px solid #000;"></th>
+		<th colspan="2" style="text-align:center !important;">iPhone</th>
+		<th style="width: 1px; border-right: 1px solid #000;"></th>
+		<th colspan="2" style="text-align:center !important;">iPad</th>
 	</tr>
 	<tr>
-		<td>appicon@2x.png</td><td>Retina iPhone/iPod</td>
+		<th style="border-right: 1px solid #000;"></th>
+		<th style="border-right: 1px solid #000;text-align:center !important;">iOS6</th>
+		<th style="text-align:center !important;">iOS7</th>
+		<th style="width: 1px; border-right: 1px solid #000;"></th>
+		<th style="border-right: 1px solid #000;text-align:center !important;">iOS6</th>
+		<th style="text-align:center !important;">iOS7</th>
 	</tr>
 	<tr>
-		<td>appicon-72.png</td><td>Non-retina iPad</td>
+		<td style="border-right: 1px solid #000;">Non-retina</td>
+		<td style="border-right: 1px solid #000;">appicon.png<br/>(57px)<br/>&nbsp;</td>
+		<td>appicon-60.png<br/>(60px)</td>
+		<td style="width: 1px; border-right: 1px solid #000;"></td>
+		<td style="border-right: 1px solid #000;">appicon-72.png<br/>(72px)</td>
+		<td>appicon-76.png<br/>(76px)</td>
 	</tr>
 	<tr>
-		<td>appicon-72@2x.png</td><td>Retina iPad</td>
-	</tr>
-	<tr>
-		<td>iTunesArtwork (no extension)</td><td>iTunes</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="font-size:0.75em;font-style:italic;">Place in Resources, Resources/iphone or  app/assets, app/assets/iphone</td>
+		<td style="border-right: 1px solid #000;">Retina</td>
+		<td style="border-right: 1px solid #000;">appicon@2x.png<br/>(114px)<br/>&nbsp;</td>
+		<td>appicon-60@2x.png<br/>(120px)</td>
+		<td style="width: 1px; border-right: 1px solid #000;"></td>
+		<td style="border-right: 1px solid #000;">appicon-72@2x.png<br/>(144px)</td>
+		<td>appicon-76@2x.png<br/>(152px)</td>
 	</tr>
 </table>
-					<div class="slidenote"><div class="l_slidenote_appicon"></div></div>
+					<ul style="width:80%;font-size: 0.75em !important;">
+						<lh class="l_appiconsioslh" style="margin-left: -10px; font-weight: bold;">Place in:</lh>
+						<li class="l_appiconsios1">Traditional: Resources or <strong>Resources/iphone</strong></li>
+						<li class="l_appiconsios2">Alloy: app/assets or <strong>app/assets/iphone</strong></li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_appicon">Recommendation to put in the iphone subdirectory so that these icons are not included in your Android or other platform builds.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_appiconsandroid">App icons - Android</h2>
-					<p class="l_androidicon">Place appicon.png in Resources, Resources/android, app/assets, or app/assets/android.<br/>Or:<br/>&nbsp;</p>
+					<p class="l_androidicon">Simple solution: place a single appicon.png in Resources, Resources/android, app/assets, or app/assets/android.<br/>&nbsp;<br/>Or:<br/>&nbsp;</p>
 
 <table border="0" cellspacing="5" cellpadding="5">
 	<tr><th>Class</th><th>Dimensions and DPI</th><th>File name and path</th></tr>
@@ -542,7 +561,7 @@ Ti.App.addEventListener('databaseUpdated', function() {
 	</tr>
 </table>
 					<p class="l_iconfolders" style="margin-top:20px;">Place in Resources or Resources/iphone.<br/>With Alloy, in app/assets or app/assets/iphone</p>
-					<div class="slidenote"><div class="l_slidenote_splashscreensios"></div></div>
+					<div class="slidenote"><div class="l_slidenote_splashscreensios">Same screen sizes are used for iOS 7 and previous versions</div></div>
 				</section>
 
 				<section>
@@ -558,16 +577,51 @@ Ti.App.addEventListener('databaseUpdated', function() {
 
 				<section>
 					<h2 style="" class="l_i18n">Internationalization</h2>
-				    <img src="images/i18n.png" style="width:680px;margin-top:-5px;" class="noborder"/>
-					<ul style="width:400px; margin: 0 auto;">
-						<li class="l_i18n1">Ti.Locale.getString('fugitives')</li>
-						<li class="l_i18n2">L('fugitives')</li>
-						<li class="l_i18n3"><i>component</i>.titleid='fugitives'</li>
-					</ul>
-
-					<div class="slidenote"><div class="l_slidenote_i18n"></div></div>
+				    <img src="images/i18n.png" style="width:800px;margin-top:-5px;" class="noborder"/>
+					<div class="slidenote"><div class="l_slidenote_i18n">You have to create the directories and files yourself.</div></div>
 				</section>
 
+				<section>
+					<h2 style="" class="l_i81n2">Using the strings</h2>
+					<p>
+				    <img src="images/i18n_xml.png" style="width:600px;"/><br/>
+				    <img src="images/i18n_tss.png" style="width:300px;"/><br/>
+				    <img src="images/i18n_js.png" style="width:360px;"/><br/>
+					</p>
+					<p class="l_funcs">L() is an alias for Ti.Platform.getString() </p>
+					<div class="slidenote"><div class="l_slidenote_i81n2">You can use the L() function in the View, for example you could set title="L('buttonTitle')"</div></div>
+				</section>
+
+
+				<section>
+					<h2 style="" class="l_extracting">Extracting Strings</h2>
+					<pre style=""><code contenteditable>
+// Shows a before and after of your i18n file, does NOT write the changes
+$ alloy extract-i18n  
+ 
+// Writes the changes to "i18n/en/strings.xml"
+$ alloy extract-i18n --apply   
+ 
+// Specify a different language with another parameter ("en" is the default)
+$ alloy extract-i18n es
+ 
+// Specify "es" as the language and write the changes to "i18n/es/strings.xml"
+$ alloy extract-i18n es --apply
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_extracting"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_i18nrules">i18n Notes</h2>
+					<ul style="width:80%;">
+						<li class="l_rules1">i18n directory goes in project root, not inside app or Resources!</li>
+						<li class="l_rules2">Language directories named with ISO-639 two-letter country codes</li>
+						<li class="l_rules3">You have to create those directories yourself</li>
+						<li class="l_rules4">Which strings are shown depends on <em>device</em>'s language setting<br/>&nbsp;&nbsp;...not for user-switchable language selection within your app</li>
+						<li class="l_rules5">The XML structure matches Android's string resources file, mapped to plist on iOS at build time</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_i18nrules"></div></div>
+				</section>
 
 			
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
