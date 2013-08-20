@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ti:app xmlns:ti="http://ti.appcelerator.org">
+<?xml version="1.0" encoding="UTF-8"?><ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.appcelerator.mapsdemo</id>
     <name>MapsDemo</name>
     <version>1.0</version>
@@ -44,12 +43,10 @@
             <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
             <!-- Replace <com.domain.appid> with your application ID -->
             <uses-permission android:name="com.appcelerator.mapsdemo.permission.MAPS_RECEIVE"/>
-            <permission
-                android:name="com.appcelerator.mapsdemo.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+            <permission android:name="com.appcelerator.mapsdemo.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
             <application>
                 <!-- Replace "PASTE YOUR GOOGLE MAPS API KEY HERE" with the Google API key you obtained -->
-                <meta-data
-                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBWK2Q7LPMC1ml1r1l1TxD8W-lXa0VOk2o"/>
+                <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBWK2Q7LPMC1ml1r1l1TxD8W-lXa0VOk2o"/>
             </application>
         </manifest>
     </android>
@@ -72,8 +69,8 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.1.0.GA</sdk-version>
+    <sdk-version>3.1.2.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
-</ti:app>
+<property name="ti.deploytype">test</property></ti:app>

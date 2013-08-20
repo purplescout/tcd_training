@@ -1,16 +1,19 @@
 <Alloy>
   <Window class='container' id="win">
-    <View ns="Ti.Map" id="map" platform="ios">
-      <!-- annotation styled via tss file -->
-      <Annotation id="annotation1"/>
-
-      <!-- annotation styles via inline style -->
-      <Annotation title="Palo Alto" latitude="37.47" longitude="-122.12"/>
-
-      <!-- platform-specific annotations -->
-      <Annotation id="annotation2" platform="android"/>
-      <Annotation id="annotation3" platform="ios"/>
-
+  	<!-- Tags for iOS -->
+    <View id="map" ns="Ti.Map" platform="ios">
+		<Annotation id="annotation1"/>
     </View>
+    <View id="dividerLine" platform="ios"/>
+    <View id="map1" ns="Ti.Map" platform="ios">
+		<Annotation id="annotation2"/>
+    </View>
+
+  	<!-- Tags for Android -->
+
+    <Module id="map" module="ti.map" method="createView" platform="android"/>
+    <!-- Annotations can't be set in the XML (yet) -->
+    <View id="dividerLine" platform="android"/>
+    <Module id="map1" module="ti.map" method="createView" platform="android"/>
   </Window>
 </Alloy>
