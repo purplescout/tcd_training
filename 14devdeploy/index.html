@@ -99,9 +99,22 @@
 				</section>
 
 				<section>
-					<h2 class="l_configure_device">1. Configure device for testing</h2>
-					<p class="l_configure_device_image"><img src="images/configure-device.png" style="margin-top:100px;margin-right: 10px;height:330px;float:left;"><img src="images/configure-device-android4.png" style="margin-top:60px;height:450px;float:left;"></p>
-					<div class="slidenote"><div class="l_slidenote_configure_device">To configure your device for testing, you must enable USB debugging and permit non-Market apps. How you do so varies by Android version. Version 2.x is shown on the left; Version 4.x on the right. <br><br>Windows users: you will need need to install drivers specific to your device. See the Android developer site for info.<br>Linux users: you need to create a USB config, see the Appcelerator docs site.</div>
+					<h2 style="" class="l_androidstepone">1. Configure Device</h2>
+					<ul style="width:80%;">
+						<li class="l_androidstepsone1">Windows/Linux: Install or configure drivers</li>
+						<li class="l_androidstepsone2">Use the proper USB cable (not a charge-only cable)</li>
+						<li class="l_androidstepsone3">Enable the connection on the device</li>
+						<li class="l_androidstepsone4">Jelly Bean: Accept the connection</li>
+						<li class="l_androidstepsone4">Use the right connection mode</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_androidstepone">Not all USB cables will work, especially those that come with feature phones. Such charge-only cables lack the conductors needed to enable USB connections. The next slide shows the screens you use to enable the connection on the device. With Jelly Bean devices, you'll be prompted to accept the connection when you plug in to the computer. <br/><br/>You must connect using MTP (media transfer protocol); it's the default on Android 4.x devices but not all older devices. You can't use PTP or UMC (USB storage mode).</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_configure_device">1a. Enable Connection on the Device</h2>
+					<p class="l_configure_device_image"><img src="images/configure-device.png" style="margin-top:50px;margin-right: 10px;height:330px;float:left;" class="noborder"><img src="images/configure-device-android4.png" style="margin-top:5px;height:450px;float:left;" class="noborder"></p>
+					<p class="l_android42">Android 4.2+: Settings &rarr; About Phone/Tablet, tap on <em>build number</em> seven times. Return to Settings screen, go to Developer Options, turn on USB Debugging. </p>
+					<div class="slidenote"><div class="l_slidenote_configure_device">To configure your device for testing, you must enable USB debugging and permit non-Market apps. How you do so varies by Android version. Version 2.x is shown on the left; Version 4.x on the right. With Android 4.2+ the Developer Options menu is hidden till you do the steps shown here.</div>
 				</section>
 
 				<section>
@@ -112,6 +125,12 @@
 					<li class="l_run_menu">From Run menu, choose Android Device</li>
 					</ol>
 					<div class="slidenote"><div class="l_slidenote_local_android">Android deployment for testing is pretty simple<br>Can also manually install the APK via ADB<br>Or by transferring apk to device and opening with a file manager<br>Ti Studio signs APK with a debug compatible certificate. You could go through the signing steps but that's unnecessary</div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_adbhangs">2a. ADB sometimes hangs</h2>
+				    <img src="images/adbhangs.png" style="width:600px;" class="noborder"/>
+					<div class="slidenote"><div class="l_slidenote_adbhangs">If you get an error about no devices attached even though one is (or the emulator is running), adb has hung and needs to be restarted. Sometimes it doesn't start up nicely and you have to do this procedure multiple times.</div></div>
 				</section>
 
 

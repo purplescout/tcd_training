@@ -165,13 +165,27 @@
 					<h1 class="l_itunes_store">iTunes AppStore</h1>
 					<ol style="width:80%;">
 						<li class="l_itunesstore1">Gather required assets</li>
-						<li class="l_itunesstore">Create app entry at iTunes Connect</li>
 						<li class="l_itunesstore3">Obtain distribution certificate and provisioning profile</li>
 						<li class="l_itunesstore4">Install certificate and provisioning profile</li>
 						<li class="l_itunesstore5">Build and code-sign app</li>
+						<li class="l_itunesstore">Create app entry at iTunes Connect</li>
 						<li class="l_itunesstore6">Verify and upload to iTunes Connect from Xcode Organizer</li>
 					</ol>
 					<div class="slidenote"><div class="l_slidenote_itunes_store"></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_itunesgraphics">Required Assets in your App</h2>
+					<ul style="width:80%;">
+						<li>App icons for all supported devices and resolutions</li>
+						<li>Extra icons (for Settings app, Spotlight, etc.)</li>
+						<li>Launch images (splash screens) for all supported devices, resolutions, and orientations</li>
+						<li>iTunesArtwork (512px square) and iTunesArtwork@2x (1024px square) icons for iTunes</li>
+					</ul>
+					<p class="l_itunesgraphicspara" style="margin-top:20px;">See <a href='http://goo.gl/eXZ0t' target='_blank'>http://goo.gl/eXZ0t</a> for complete list</p>
+					<p class="l_builtinto">All of these must be present in your IPA file. Apple will check.</p>
+
+					<div class="slidenote"><div class="l_slidenote_itunesgraphics">All of these must be present in your IPA file. Apple will check and won't let you upload if you don't have them. For example, for iPhone, you'll need retina and non-retina iPhone4 splash screens &amp; retina iPhone5 sized splash screen, icons in retina &amp; non-retina sizes, two iTunesArtwork files, and possibly additional icons in various sizes. All of these should be in the app/assets/iphone directory so that they're not included in builds for other platforms.</div></div>
 				</section>
 
 				<section>
@@ -208,7 +222,7 @@
 					<h2 class="l_ios_app_itunes_connect">Creating an app in iTunes Connect</h2>
 					<p class="l_itunesconnect_image"><img src="images/itunes-connect.png" style="margin-top:50px;height:550px;"/></p>
 					<ul style="width:380px;position:absolute; right:0px; top:200px;background-color:#fff;padding:10px 10px 10px 40px;border:1px solid #888;">
-						<li class="l_itunes1">1 screen/device/language</li>
+						<li class="l_itunes1">1 screen shot per device per language</li>
 						<li class="l_itunes2">1024x1024 px icon</li>
 						<li class="l_itunes3">Title, description, keywords</li>
 						<li class="l_itunes4">Primary Category</li>
@@ -218,19 +232,6 @@
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_ios_app_itunes_connect">Bundle ID and suffix must match what you enter in Ti Studio<br>Step through series of pages to define price, content rating, etc.</div>
 				</section>
-
-				<section>
-					<h2 style="" class="l_itunesgraphics">iTunes Graphics Required</h2>
-					<ul style="width:80%;">
-						<li class="l_itunesgraphics1">At least one screenshot per device type your app supports (per language)</li>
-						<li class="l_itunesgraphics2">A 1024 x 1024 app icon</li>
-						<li class="l_itunesgraphics3">App icons, launch images, supporting graphics appropriate for the devices your app supports</li>
-					</ul>
-					<p class="l_itunesgraphicspara" style="margin-top:20px;">See <a href='http://goo.gl/eXZ0t' target='_blank'>http://goo.gl/eXZ0t</a> for complete list</p>
-
-					<div class="slidenote"><div class="l_slidenote_itunesgraphics">For example, for iPhone, you'll need iPhone4 &amp; iPhone5 sized screens, the large icon, plus launch images, iTunesArtwork file, and appicons in various sizes. </div></div>
-				</section>
-
 				
 				<section>
 					<h2 class="l_validate_upload">Validating and uploading</h2>
