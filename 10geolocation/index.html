@@ -206,69 +206,99 @@
 					<ul style="width:65%;float:left;">
 						<li class="l_mapprocedures1">Android requires use of the new Google Maps API version 2<br/>&nbsp;&nbsp;<em>unless you happen to have an API v1 key already</em></li>
 						<li class="l_mapprocedures2">Support is through an external module</li>
-						<li class="l_mapprocedures3">Currently, the map must be added in the controller not the View XML</li>
-						<li class="l_mapprocedures4">Remaining platforms can use Views &amp; Styles</li>
+						<li class="l_mapprocedures3">Either add with the &lt;Module> tag in the View XML or create in the controller (with Ti 3.1.2GA+)</li>
+						<li class="l_mapprocedures4">Annotations have to be added in the controller</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_mapprocedures">The new API and new module give you advanced features over Ti.Maps. These include:<ul><li>Multiple maps in an app</li><li>Pinch, zoom, rotate</li><li>More rendering options</li><li>Improved performance</li></ul></div></div>
 				</section>
 
 				<section>
-					<h2 style="" class="l_mapalloy">Maps View on iOS</h2>
+					<h2 style="" class="l_mapalloy">Maps View</h2>
 					<pre style=""><code contenteditable>
-&lt;Alloy>
-  &lt;Window class='container'>
-    &lt;View ns="Ti.Map" id="map">
-      &lt;!-- annotation styled via tss file -->
-      &lt;Annotation id="annotation1"/>
-
-      &lt;!-- annotation styles via inline style -->
-      &lt;Annotation title="Palo Alto" latitude="37.47" longitude="-122.12"/>
-
-      &lt;!-- platform-specific annotations -->
-      &lt;Annotation id="annotation2" platform="android"/>
-      &lt;Annotation id="annotation3" platform="ios"/>
-
-      &lt;!-- annotation via &lt;Require> tag -->
-      &lt;Require src="annotationView" title="Sunnyvale" latitude="37.37" longitude="-122.03" platform="ios,mobileweb"/>
-
+&lt;&lt;Alloy>
+  &lt;Window class='container' id="win">
+    &lt;!-- Tags for iOS -->
+    &lt;View id="map" ns="Ti.Map" platform="ios">
+        &lt;Annotation id="annotation1"/>
     &lt;/View>
+    &lt;View id="dividerLine" platform="ios"/>
+    &lt;View id="map1" ns="Ti.Map" platform="ios">
+        &lt;Annotation id="annotation2"/>
+    &lt;/View>
+
+    &lt;!-- Tags for Android -->
+    &lt;Module id="map" module="ti.map" method="createView" platform="android"/>
+    &lt;!-- Annotations can't be set in the XML (yet) -->
+    &lt;View id="dividerLine" platform="android"/>
+    &lt;Module id="map1" module="ti.map" method="createView" platform="android"/>
   &lt;/Window>
 &lt;/Alloy>
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_mapalloy"></div></div>
+					<div class="slidenote"><div class="l_slidenote_mapalloy">Note the Module tag and its attributes. This creates a view of the type specified by the native module. While it's a container tag, as of Alloy 1.2, you can't define annotations within the Module tag. Also note that the two platforms use the same ID for the map view so that the TSS and controller code can be largely the same.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_maptss">Associated TSS file</h2>
 					<pre style=""><code contenteditable>
-".container": {
-	backgroundColor:"white"
-},
 "#map": {
-	region: {
-		latitude: 37.38,
-		latitudeDelta: 0.2,
-		longitude: -122.05,
-		longitudeDelta: 0.2
-	}
+    userLocation: false,
+    animate: true,
+    height: '50%',
+    top: 0,
+	region: { latitude: 37.38, latitudeDelta: 0.2, longitude: -122.05, longitudeDelta: 0.2 	}
 },
-"#annotation1": {
+"#map1": {
+    userLocation: false,
+    animate: true,
+    height: '50%',
+    top: '50%',
+    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 }
+}
+"#annotation1[platform=ios]": {
 	title:"Mountain View", 
 	latitude:37.389569, 
 	longitude:-122.050212
 },
-"#annotation2": {
-	title:"Google HQ", 
-	latitude:37.4231054, 
-	longitude:-122.0823988
-},
-"#annotation3": {
-	title:"Apple HQ", 
-	latitude:37.3308525, 
-	longitude:-122.0296837
+"#annotation2[platform=ios]": {
+    title:"Sydney", 
+    latitude: -33.87365, 
+    longitude: 151.20689
 }
+
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_maptss"></div></div>
+					<div class="slidenote"><div class="l_slidenote_maptss">We can set map properties in the TSS, such as its region, display of user location, and so forth. Because the annotations are created in code for Android, the annotation classes are marked iOS only. </div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_mappjs">Associated Controller</h2>
+					<pre style=""><code contenteditable>
+if(OS_ANDROID) {
+    // need reference to ti.map even though we're adding it via the XML
+    var MapModule = require('ti.map');
+
+    // for now, must add annotations in code
+    var anno1 = MapModule.createAnnotation({
+        title:"Mountain View", 
+        latitude:37.389569, 
+        longitude:-122.050212
+    });
+    $.map.addAnnotation(anno1);
+    var anno2 = MapModule.createAnnotation({
+        title:"Sydney", 
+        latitude: -33.87365, 
+        longitude: 151.20689
+    });
+    $.map1.addAnnotation(anno2);
+    
+    // have to set properties that rely on module constants in the controller
+    $.map1.mapType = MapModule.TERRAIN_TYPE;
+}
+
+
+$.win.open();
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_mappjs">In the controller, we need a handle to the native module because it provides the methods and constants required.</div></div>
 				</section>
 
 				<section>
@@ -309,37 +339,12 @@
 					<div class="slidenote"><div class="l_slidenote_tiapp">Despite what the docs say, you have to download the module from the Marketplace. </div></div>
 				</section>
 
-				<section>
-					<h2 style="" class="l_addcode">Implement Map in the Controller</h2>
-					<pre style=""><code contenteditable>
-if(OS_ANDROID) {
-  var MapModule = require('ti.map');
-  var map = MapModule.createView({
-    userLocation: true,
-    mapType: MapModule.NORMAL_TYPE,
-    animate: true,
-    region: {
-	  latitude: -33.87365, longitude: 151.20689,
-	  latitudeDelta: 0.1, longitudeDelta: 0.1
-	},
-    height: '50%',
-    top: 0,
-    left: 0,
-    width: '50%'
-  });
-  $.window.add(map);
-}
-					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_addcode"></div></div>
-				</section>
-
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
 					<h2 style="" class="l_demo">Maps Demo</h2>
-				    <img src="images/androidmapsmodule.png" style="width:300px;"/>
-				    <img src="images/iosmaps.png" style="width:300px;"/>
-					<div class="slidenote"><div class="l_slidenote_demo">The MapsDemo app is provided in the labcode/Demos folder. The View XML code and associated TSS file provide the map on iOS. The controller code implements the Android maps module and creates the four-map view as shown here.</div></div>
+				    <img src="images/mapdemo.png" style="width:600px;"/>
+					<div class="slidenote"><div class="l_slidenote_demo">The MapsDemo app is provided in the labcode/Demos folder. </div></div>
 				</section>
 
 
