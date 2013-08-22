@@ -7,7 +7,7 @@ if (!Ti.App.Properties.hasProperty('seeded')) {
 	// It returns an array of objects in the form [{name: 'Jeff Haynie'}, ...]
 	var xhr = Titanium.Network.createHTTPClient();
 	xhr.onload = function() {
-		Ti.API.info('got data from the network: ' + this.responseText)
+		Ti.API.info('got data from the network: ' + this.responseText);
 		var names = JSON.parse(this.responseText);
 		for(var i=0,j=names.length;i<j;i++) {
 			var criminal = Alloy.createModel('fugitives', { name: names[i].name});

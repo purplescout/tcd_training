@@ -1,15 +1,14 @@
 var acs = require('acs');
 
-if(acs.isLoggedIn()) {
-	// user is logged in so just close this view
-	$.logincontainer.hide();
-} else {
-	Ti.API.info('not logged in')
-}
+acs.isLoggedIn(function(){
+    $.logincontainer.hide();
+    if(OS_ANDROID) Ti.UI.Android.hideSoftKeyboard();
+});
 
 var createCallback = function(user) {
 	if(user) {
 		$.logincontainer.hide();
+		if(OS_ANDROID) Ti.UI.Android.hideSoftKeyboard();
 	} else {
 		$.submit.title = 'Try again ...';
 		setTimeout(function(){
@@ -22,5 +21,5 @@ $.submit.addEventListener('click', function() {
 	$.name.blur();
 	$.password.blur();
 	$.submit.title = 'Working ...';
-	acs.createUser($.name.value, $.password.value, createCallback)
+	acs.createUser($.name.value, $.password.value, createCallback);
 });

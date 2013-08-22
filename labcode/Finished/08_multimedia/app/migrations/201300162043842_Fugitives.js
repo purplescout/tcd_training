@@ -2,8 +2,8 @@ migration.up = function(db) {
     db.createTable({
         "columns" : {
         		"idAttribute" : "ROWID",
-            "name" : "text",
-            "captured" : "text",
+            "name" : "string",
+            "captured" : "integer",
             "url" : "String",
             "capturedLat" : "real",
             "capturedLong" : "real"

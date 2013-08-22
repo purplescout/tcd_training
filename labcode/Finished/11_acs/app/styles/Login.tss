@@ -1,6 +1,10 @@
-".logincontainer": {
+".logincontainer[platform=ios]": {
 	backgroundColor: 'rgba(0,0,0,0.7)'
 },
+".logincontainer[platform=android]": {
+	backgroundColor: 'transparent',
+	backgroundImage: '/images/backshade.png'
+}
 "#wrapper": {
 	backgroundColor: "#fff",
 	borderRadius: 8,
@@ -20,6 +24,7 @@
 	left: 10, right: 10,
 	height: '40dp',
 	borderColor: '#888',
+	borderWidth: 1,
 	top: 10
 },
 "#name": {

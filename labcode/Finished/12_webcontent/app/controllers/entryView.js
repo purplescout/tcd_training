@@ -1,9 +1,9 @@
 var updateWebView = function() {
 	$.a.blur();$.b.blur();
-	Ti.App.fireEvent('updateGraph', {a: Math.floor($.a.value), b: Math.floor($.b.value), c: Math.floor($.c.value)});
+	Ti.App.fireEvent('updateGraph', {a: Math.floor(parseInt($.a.value)), b: Math.floor(parseInt($.b.value)), c: Math.floor(parseInt($.c.value))});
 };
 var calcC = function() {
-	$.c.value = String(Math.round(100 - $.a.value - $.b.value));
+	$.c.value = String(Math.round(100 - parseInt($.a.value) - parseInt($.b.value))+ '');
 };
 
 $.submit.addEventListener('click', updateWebView);

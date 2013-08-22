@@ -11,16 +11,33 @@ Cloud.debug = true;
 // Persist the user's login status -- by default, they're
 // logged out when the app closes
 var sid = Ti.App.Properties.getString('sessionid');
+/*
 if(sid) {
 	Cloud.sessionId = sid;
-	loggedIn = true;
 	var me = Cloud.Users.showMe(function(e) {
+        loggedIn = true;
 		currentUser = e.users[0];
 	});
 }
+*/
 
 exports.isLoggedIn = function() {
-	return loggedIn;
+    if(typeof arguments[0] == 'function') {
+        var cb = arguments[0];
+        if(sid) {
+            Cloud.sessionId = sid;
+            var me = Cloud.Users.showMe(function(e) {
+                loggedIn = true;
+                currentUser = e.users[0];
+                cb();
+                return loggedIn;
+            });
+        } else {
+            return loggedIn;
+        }
+    } else {
+        return loggedIn;
+    }
 };
 
 // Add createUser() here, accepts username, password, and callback function
@@ -57,7 +74,7 @@ exports.saveFugitive = function(fugitive) {
 	Cloud.Objects.create(data, function(e) {
 		Ti.API.info('Fugitive saved to cloud: ' + (e.success) ? 'Success' : 'Oopsie'+JSON.stringify(e));
 	});
-}
+};
 
 
 /*

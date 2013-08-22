@@ -5,4 +5,7 @@
 },
 "TableView" : {
 	backgroundColor: "transparent"
+},
+"Tab":{
+	icon: 'images/fugitives.png'
 }

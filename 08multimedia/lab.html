@@ -86,7 +86,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep4">4. In the FugitiveDetail.js controller, add the photo button event listener as described by the comments in that file. The camera should be opened if it's supported; otherwise open the photo gallery picker. In the success callback, update your image view's image property with the media returned from the camera/gallery. Accept only photos (not videos) and don't save to the gallery or enable editing.</td>
+	<td colspan="2" class="labinstructions l_labstep4">4. In the FugitiveDetail.js controller, add the photo button event listener as described by the comments in that file. The camera should be opened if it's supported; otherwise open the photo gallery picker. For Android, make sure to not open the camera in the emulator by including <code>Ti.Platform.model != 'google_sdk'</code> as part of your conditional statement. In the success callback, update your image view's image property with the media returned from the camera/gallery. Accept only photos (not videos) and don't save to the gallery or enable editing.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>

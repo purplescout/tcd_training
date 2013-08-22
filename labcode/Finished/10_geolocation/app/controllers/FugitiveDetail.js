@@ -7,7 +7,9 @@ var args = arguments[0] || {};
 //$.thumbnail.image = args.image;
 $.parentController = args.parentTab;
 
-// add the datatransformation
+// add the datatransformation, Tony's busy!!
+// dataTransform is not wired up yet, but i
+// hacked it into my code
 $.fugitiveDetail = _.extend({}, $.fugitiveDetail, {
     transform : function() {
         return dataTransformation(this);
@@ -36,7 +38,7 @@ function dataTransformation(_model) {
         name : _model.attributes.name,
         captured : _model.attributes.captured ? "Captured" : "Not Captured",
         image : _model.attributes.url || '/images/burglar.png',
-    }
+    };
 }
 
 //
@@ -52,7 +54,7 @@ $.photo_button.addEventListener('click', function(_e) {
             $.image.image = image;
 
             //save for future use
-            var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo' + args.data.get("alloy_id") + '.png');
+            var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo' + args.data.get("id") + '.png');
             f.write(image);
 
             // update the model and save
@@ -84,7 +86,7 @@ $.photo_button.addEventListener('click', function(_e) {
     };
 
     // display camera OR gallery
-    if (Ti.Media.isCameraSupported) {
+    if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk') {
         Ti.Media.showCamera(cameraOptions);
     } else {
         Ti.Media.openPhotoGallery(cameraOptions);

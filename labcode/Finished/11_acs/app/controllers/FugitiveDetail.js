@@ -1,5 +1,4 @@
 var args = arguments[0] || {};
-Ti.API.info('args = ' + JSON.stringify(args))
 //
 // this is setting the view elements of the row view
 // which is found in views/row.xml based on the arguments
@@ -20,7 +19,7 @@ $.fugitiveDetail = _.extend({}, $.fugitiveDetail, {
 // instance variable used in data-binding
 // we do this set here to trigger the events
 // that will cause the data to be rendered
-Ti.API.info('args.data = ' + JSON.stringify(args.data))
+Ti.API.info('args.data = ' + JSON.stringify(args.data));
 $.fugitiveDetail.set(args.data.attributes);
 
 /**
@@ -40,7 +39,7 @@ function dataTransformation(_model) {
         name : _model.attributes.name,
         captured : _model.attributes.captured ? "Captured" : "Not Captured",
         image : _model.attributes.url || '/images/burglar.png',
-    }
+    };
 }
 
 //
@@ -88,7 +87,7 @@ $.photo_button.addEventListener('click', function(_e) {
     };
 
     // display camera OR gallery
-    if (Ti.Media.isCameraSupported) {
+    if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk') {
         Ti.Media.showCamera(cameraOptions);
     } else {
         Ti.Media.openPhotoGallery(cameraOptions);

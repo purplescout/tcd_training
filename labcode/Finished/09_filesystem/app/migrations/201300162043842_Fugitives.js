@@ -1,10 +1,11 @@
+/*
 migration.up = function(db) {
     db.createTable({
         "columns" : {
         		"idAttribute" : "ROWID",
-            "name" : "text",
+            "name" : "string",
             "captured" : "integer",
-            "url" : "text",
+            "url" : "String",
             "capturedLat" : "real",
             "capturedLong" : "real"
         },
@@ -26,3 +27,4 @@ migration.up = function(db) {
 migration.down = function(db) {
     db.dropTable("fugitives");
 };
+*/

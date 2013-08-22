@@ -91,9 +91,19 @@
 		<td class="tdfiller"><!-- leave empty--></td>
 		<td class="labexplanations l_stepexplanation1">We can't provide a complete app to import because the GUID would be tied to our developer account and ACS app. You must create your own app so it's associated with your account. This also means you won't be able to run the finished code without replacing the GUID and re-cloud-enabling the app. The UI has been completed for you, and shells of the functions you must write are provided.</td>
 	</tr>
+</table>
+<table>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep1a">2. If building for Android, edit the tiapp.xml file and display the XML view. Add this tag to the XML: <code>&lt;property name="ti.android.threadstacksize" type="int">32768&lt;/property></code> and save your changes.</td>
+</tr>
+<tr>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation1a">The app will crash with an error indicating insufficient stack space without this change.</td>
+</tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep2">2. Open lib/acs.js and examine the code that's provided for you.</td>
+	<td colspan="2" class="labinstructions l_labstep2">3. Open lib/acs.js and examine the code that's provided for you.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -101,7 +111,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep3">3. Following the comments in the file, complete the createUser() function.</td>
+	<td colspan="2" class="labinstructions l_labstep3">4. Following the comments in the file, complete the createUser() function.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -109,7 +119,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep4">4. Following the comments in the file, complete the saveFugitive() function.</td>
+	<td colspan="2" class="labinstructions l_labstep4">5. Following the comments in the file, complete the saveFugitive() function.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -117,7 +127,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep5">5. In FugitiveDetail.js, update the capture button's click event listener. Where noted by the comment, save the fugitive to the cloud using your saveFugitive() method. Don't forget to require in the acs library.</td>
+	<td colspan="2" class="labinstructions l_labstep5">6. In FugitiveDetail.js, update the capture button's click event listener. Where noted by the comment, save the fugitive to the cloud using your saveFugitive() method. Don't forget to require in the acs library.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -125,7 +135,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep6">6. In the Login.js controller, complete the createCallback() function. And add the createUser() call in the submit button's event click event listener.</td>
+	<td colspan="2" class="labinstructions l_labstep6">7. In the Login.js controller, complete the createCallback() function. And add the createUser() call in the submit button's event click event listener.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -133,7 +143,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep7">7. Save changes in all the files. Then run the project in the simulator/emulator or on device.</td>
+	<td colspan="2" class="labinstructions l_labstep7">8. Save changes in all the files. Then run the project in the simulator/emulator or on device.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -141,7 +151,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep8">8. After creating the user in the app, log onto the ACS control panel (visit my.appcelerator.com). Make sure you're working in the Development perspective. Then check the Users objects for your app. Your new user should be listed.</td>
+	<td colspan="2" class="labinstructions l_labstep8">9. After creating the user in the app, log onto the ACS control panel (visit my.appcelerator.com). Make sure you're working in the Development perspective. Then check the Users objects for your app. Your new user should be listed.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -149,7 +159,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep9">9. In the app, capture a fugitive. Then, check the ACS control panel. You should see the fugitive data listed in the Custom Objects of your app.</td>
+	<td colspan="2" class="labinstructions l_labstep9">10. In the app, capture a fugitive. Then, check the ACS control panel. You should see the fugitive data listed in the Custom Objects of your app.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>

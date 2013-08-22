@@ -5,7 +5,7 @@ function doClick(e) {
 Ti.API.info('seeded: ' + Ti.App.Properties.hasProperty('seeded'));
 //determine if the database needs to be seeded
 if (!Ti.App.Properties.hasProperty('seeded')) {
-
+	
     // add all items to collection
     Alloy.Collections.Fugitive.reset([{
         "name" : "Jeff Haynie"

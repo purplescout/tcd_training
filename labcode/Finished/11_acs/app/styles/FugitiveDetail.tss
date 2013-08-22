@@ -5,7 +5,7 @@
 		layout:'vertical',
 		barColor: '#6d0a0c',
 		backgroundColor: 'transparent',
-		backgroundImage: 'images/grain.png'
+		backgroundImage: '/images/grain.png'
 },
 "#captured_lbl" : {
 		top:10,
@@ -23,7 +23,7 @@
 		top:10
 },
 "#name_tf[platform=android]" : {
-		height:Ti.UI.SIZE ,
+		height:Ti.UI.SIZE
 },
 "#photo_button" :{
 		title:'Add Photo',
