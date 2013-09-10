@@ -166,9 +166,15 @@ tabgroup.addTab(tab);
 				</section>
 
 				<section>
-					<h2 class="l_iOS_components">iOS User Interface Components</h2>
+					<h2 class="l_iOS_components">iOS 6 UI Components</h2>
 					<p><img src="images/ios-components.png" style="margin-top:0px;height:420px;align:right" class="noborder"></p>
 					<div class="slidenote"><div class="l_slidenote_iOS_components">Briefly introduce the key iOS user interface components especially for the Android users in the class</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_iOS7_components">iOS 7 UI Components</h2>
+					<p class="l_ios7comp"><img src="images/ios7ui-components.png" style="height:600px;" class="noborder"/></p>
+					<div class="slidenote"><div class="l_slidenote_iOS7_components">Component names have not changed, nor have their purpose. However, the look of the iOS 7 UI is very different than older versions. Not clearly shown on this image is that the window can extend under the navigation bar and tab bar (its contents would be heavily blurred). If you choose to extend windows in this way, you must account for this "extra room" in the placement of your components or they will end up inaccessible under one of the bars.</div></div>
 				</section>
 				
 				<section>
@@ -458,7 +464,7 @@ Ti.App.addEventListener('databaseUpdated', function() {
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;" class="l_appextras">Icons, Splash screens, i18n</h5>
+					<h5 style="clear:both;" class="l_appextras">Icons, Launch screens, i18n</h5>
 					<div class="slidenote"><div class="l_slidenote_appextras">The goal here is to show you that you can specify icons and splash screens for the various operating systems and devices. Please don't worry over memorizing the various file names and sizes. They are all documented here in the slides and in our guides.</div></div>
 				</section>
 
@@ -538,41 +544,42 @@ Ti.App.addEventListener('databaseUpdated', function() {
 				</section>
 
 				<section>
-					<h2 style="" class="l_splashscreensios">Splash Screens - iOS</h2>
+					<h2 style="" class="l_splashscreensios">Launch Screens - iOS</h2>
 <table border="0" cellspacing="5" cellpadding="5">
-	<tr><th colspan="2" style="text-align:center !important;">iOS</th></tr>
+	<tr><th colspan="3" style="text-align:center !important;">iOS</th></tr>
 	<tr>
-		<td>Default.png</td><td>Non-retina iPhone/iPod</td>
+		<td>Default.png</td><td>Non-retina iPhone/iPod</td><td>320x480</td>
 	</tr>
 	<tr>
-		<td>Default@2x.png</td><td>Retina iPhone/iPod</td>
+		<td>Default@2x.png</td><td>Retina iPhone/iPod</td><td>640x960</td>
 	</tr>
 	<tr>
-		<td>Default-568h@2x.png</td><td>iPhone 5/iPod 5</td>
+		<td>Default-568h@2x.png</td><td>iPhone 5/iPod 5</td><td>640x1136</td>
 	</tr>
 	<tr>
-		<td>Default-Landscape.png &amp; Default-Portrait.png</td><td>Non-retina iPad</td>
+		<td>Default-Landscape.png &amp; Default-Portrait.png</td><td>Non-retina iPad</td><td>1024x768</td>
 	</tr>
 	<tr>
-		<td>Default-Landscape@2x.png &amp; Default-Portrait@2x.png</td><td>Retina iPad</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="font-size:0.75em;font-style:italic;">No landscape/portrait options with iPhone &amp; iPod; apps launch in only portrait on those.</td>
+		<td>Default-Landscape@2x.png &amp; Default-Portrait@2x.png</td><td>Retina iPad</td><td>2048x1536</td>
 	</tr>
 </table>
-					<p class="l_iconfolders" style="margin-top:20px;">Place in Resources or Resources/iphone.<br/>With Alloy, in app/assets or app/assets/iphone</p>
-					<div class="slidenote"><div class="l_slidenote_splashscreensios">Same screen sizes are used for iOS 7 and previous versions</div></div>
+					<ul style="width:80%;font-size: 0.75em !important;">
+						<lh class="l_appiconsioslh" style="margin-left: -10px; font-weight: bold;">Place in:</lh>
+						<li class="l_appiconsios1">Traditional: Resources or <strong>Resources/iphone</strong></li>
+						<li class="l_appiconsios2">Alloy: app/assets or <strong>app/assets/iphone</strong></li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_splashscreensios">Note: No landscape/portrait options with iPhone &amp; iPod; apps launch in only portrait on those.<br/><br/>Same screen sizes are used for iOS 7 and previous versions</div></div>
 				</section>
 
 				<section>
-					<h2 style="" class="l_splashscreensandroid">Splash Screens - Android</h2>
-					<ul style="width:60%;float:left;">
-						<li class="l_splashscreensandroid1">default.png in Resources, Resources/android, app/assets, or app/assets/android</li>
-						<li class="l_splashscreensandroid2">Will be stretched to fit screen size and proportions</li>
-						<li class="l_splashscreenandroid3">Options<br/><ul style="margin:5px 0 10px 60px;"><li>Use res directories</li><li>Use a 9-patch image<br/>(See http://goo.gl/P950R)</li></ul></li>
+					<h2 style="" class="l_splashscreensandroid">Launch Screens - Android</h2>
+					<ul style="width:90%;">
+						<li class="l_splashscreensandroid1">Option 1: Use a single default.png in Resources/android or app/assets/android<br/><em>Will be stretched to fit screen size and proportions</em></li>
+						<li class="l_splashscreensandroid2">Option 2: Put size/resolution-specific versions of default.png in res directories<br/><em>No tablet sizes supported</em></li>
+						<li class="l_splashscreenandroid3">Option 3: Use a 9-patch image<br/>(See http://goo.gl/P950R)</li>
 					</ul>
-				    <img src="images/androidsplashscreens.png" style="width:400px;float:right;margin-top:170px;"/>
-					<div class="slidenote"><div class="l_slidenote_splashscreensandroid"></div></div>
+				    <img src="images/androidsplashscreens.png" style="width:400px;"/>
+					<div class="slidenote"><div class="l_slidenote_splashscreensandroid">Graphic shows layout of res directories. Naming scheme supports basic handset variations. However, there are no such conventions for tablets and "phablets." There are a couple of tickets for 9-patch images; check for current support: <a href="https://jira.appcelerator.org/browse/TIMOB-10801">TIMOB-10801</a> and <a href="https://jira.appcelerator.org/browse/TIMOB-12068">TIMOB-12068</a></div></div>
 				</section>
 
 				<section>
