@@ -102,9 +102,9 @@
 				<section>
 					<h2 class="l_httpclient">The HTTPClient Object</h2>
 					<p align="left" class="l_ti_network">Ti.Network.HTTPClient implements the XHR specification</p>
-					<p align="left" class="l_low_level">Low level HTTP client interface with support for all HTTP verbs</p>
+					<p align="left" class="l_low_level">Low level HTTP client interface with support for most HTTP verbs</p>
 					<p align="left" class="l_should_be">Should be familiar to Ajax programmers</p>
-					<div class="slidenote"><div class="l_slidenote_httpclient">Titanium implements XHR which you implement with techniques very similar to low-level Ajax without a jQuery type library<br>Support for all verbs: get, post, delete, put</div></div>
+					<div class="slidenote"><div class="l_slidenote_httpclient">Titanium implements XHR which you implement with techniques very similar to low-level Ajax without a jQuery type library<br>The intention is for XHR to support all verbs. The underlying native libraries we use incorrectly convert DELETE to to POST requests, and not every verb defined in RFC 2616 is actually supported. Tickets are open to correct this.</div></div>
 				</section>
 				
 				<section>

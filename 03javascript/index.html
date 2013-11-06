@@ -1047,9 +1047,10 @@ myFunc({
 						<li class="l_perfloops4">Operators a little faster than functions</li>
 					</ul>
 					<pre style="width:550px;float:right;"><code contenteditable>
-for(var i=0, j=arr.length; i < j; i++) { }
-// faster than
-for(var i=0; arr.length; i++) { }
+// with arr.length = 10000
+for(var i=0, j=arr.length; i<j; i++) {}
+// is faster than
+for(var i=0; i<arr.length; i++) {}
 
 var foo = bar.someproperty.anotherproperty
 while(foo < 10) { }
