@@ -1048,9 +1048,9 @@ myFunc({
 					</ul>
 					<pre style="width:550px;float:right;"><code contenteditable>
 // with arr.length = 10000
-for(var i=0, j=arr.length; i<j; i++) {}
+for(var i=0, j=arr.length; i < j; i++) {}
 // is faster than
-for(var i=0; i<arr.length; i++) {}
+for(var i=0; i < arr.length; i++) {}
 
 var foo = bar.someproperty.anotherproperty
 while(foo < 10) { }
