@@ -12,7 +12,7 @@ $.save_button.addEventListener('click', function(_e) {
 
     var fugitiveModel = Alloy.createModel("Fugitive", {
         name : $.name_tf.value,
-        captured : false
+        captured : 0
     });
 
     // save model

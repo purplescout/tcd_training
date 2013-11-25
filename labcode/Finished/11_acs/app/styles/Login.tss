@@ -15,6 +15,10 @@
 	top: 20,
 	layout: 'vertical'
 },
+"#wrapper[platform=android]": {
+	width: '75%',
+	height: '50%'
+},
 "#img": {
 	top: 10,
 	width:100
