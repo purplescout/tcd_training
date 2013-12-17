@@ -90,6 +90,27 @@
 					<div class="slidenote"><div class="l_slidenote_androidpublishing"></div></div>
 				</section>
 
+				<section>
+					<h2 style="" class="l_andr_versions">Targeting Android Versions</h2>
+					<ul style="width:60%;">
+						<li class="l_andver1">minSdkVersion - minimum version supported</li>
+						<li class="l_andver2">targetSdkVersion - target version also determines which version of the Android build tools are used</li>
+						<li class="l_andver3">Controls Play Store filtering</li>
+						<li class="l_andver4">tool-api-level no longer supported or needed</li>
+					</ul>
+					<pre><code contenteditable>
+&lt;android xmlns:android="http://schemas.android.com/apk/res/android">
+    &lt;manifest android:installLocation="auto">
+        &lt;uses-sdk android:minSdkVersion="14" 
+            android:targetSdkVersion="16"/>
+    &lt;/manifest>
+&lt;/android>
+
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_andr_versions"></div></div>
+				</section>
+
 
 				<section>
 					<h1 class="l_android_market">Google Play</h1>

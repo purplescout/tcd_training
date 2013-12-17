@@ -196,45 +196,91 @@
 						<li class="l_right_left">Right/Left Button</li>
 					</ul></div>
 					<p align="left" class="l_can_individually">Can individually update pins, all are set at the same time</p>
-					<div class="slidenote"><div class="l_slidenote_annotations">Adding Points of Interest (POI)<br>Create annotations prior to rendering the map or add dynamically after<br>Pins/annotations customizable<br>Gotchas:<ul><li>Need Google API extensions for Android</li></ul></div></div>
+					<div class="slidenote"><div class="l_slidenote_annotations">Adding Points of Interest (POI)<br>Create annotations prior to rendering the map or add dynamically after<br>Pins/annotations customizable</div></div>
 				</section>
 
 				<section>
-					<h2 style="" class="l_mapprocedures">Android vs. the Rest</h2>
+					<h2 style="" class="l_mapkits">Adding Maps</h2>
+					<ul style="width:100%;">
+						<li class="l_mapkits1">Mobile Web, Tizen, BB10 &mdash; use built-in Ti.Map component</li>
+						<li class="l_mapkits2">iOS &amp; Android &mdash; use add-on module<br/><ul style="margin-left: 20px;"><li>Download from Marketplace or https://github.com/appcelerator-modules/ti.map</li><li>Module adds new functionality</li></ul></li></li>
+						<li class="l_mapkits3">iOS: no map key or setup required</li>
+						<li class="l_mapkits4">Android: API key and some setup required</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_mapkits">The new API and new module give you advanced features over Ti.Maps. <br/><br/>On iOS, this includes cameras and 3D projections. <br/><br/>On Android, these include:<ul><li>Multiple maps in an app</li><li>Pinch, zoom, rotate</li><li>More rendering options</li><li>Improved performance</li></ul></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_mapprocedures">Android Mapping</h2>
 					<img src="images/androidmapsmodule.png" style="width:25%;float:right;"/>
 					
 					<ul style="width:65%;float:left;">
-						<li class="l_mapprocedures1">Android requires use of the new Google Maps API version 2<br/>&nbsp;&nbsp;<em>unless you happen to have an API v1 key already</em></li>
-						<li class="l_mapprocedures2">Support is through an external module</li>
-						<li class="l_mapprocedures3">Either add with the &lt;Module> tag in the View XML or create in the controller (with Ti 3.1.2GA+)</li>
+						<li class="l_mapprocedures1">Version 2 Google Maps API key required<br/>&nbsp;&nbsp;<em>unless you happen to have an API v1 key already</em></li>
+						<li class="l_mapprocedures2">Must use API key to see tiles on device / in production</li>
+						<li class="l_mapprocedures3">Either add with the &lt;Module> tag in the View XML or create in the controller</li>
 						<li class="l_mapprocedures4">Annotations have to be added in the controller</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_mapprocedures">The new API and new module give you advanced features over Ti.Maps. These include:<ul><li>Multiple maps in an app</li><li>Pinch, zoom, rotate</li><li>More rendering options</li><li>Improved performance</li></ul></div></div>
+					<div class="slidenote"><div class="l_slidenote_mapprocedures"></div></div>
 				</section>
+
+				<section>
+					<h2 style="" class="l_xplatform">iOS/Android Maps Solution</h2>
+					<ol style="width:100%;">
+						<li class="l_xplatform0">Add module to tiapp.xml</li>
+						<li class="l_xplatform1">Enable module in alloy.js</li>
+						<li class="l_xplatform2">Define map in XML</li>
+						<li class="l_xplatform3">Style map in TSS</li>
+						<li class="l_xplatform4">Add annotations and set platform-specifics in controller</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_xplatform"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_mapexample">Maps Example</h2>
+				    <img src="images/mapdemo.png" style="width:600px;"/>
+					<div class="slidenote"><div class="l_slidenote_mapexample">This is basically what the code on the next few slides would produce.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_maptiapp">tiapp.xml changes</h2>
+					<ul style="width:100%;">
+						<li class="l_maptiapp1">First, download the modules and install</li>
+						<li class="l_maptiapp2">Add module support</li>
+						<li class="l_maptiapp3">For Android, configure permissions and API key (later slide)</li>
+					</ul>
+<pre style=""><code contenteditable>
+&lt;modules>
+    &lt;module platform="iphone">ti.map&lt;/module>
+    &lt;module platform="android">ti.map&lt;/module>
+&lt;/modules>
+</code></pre>
+					
+					<div class="slidenote"><div class="l_slidenote_maptiapp">You </div></div>
+				</section>
+				
+				<section>
+					<h2 style="" class="l_alloyjs">Alloy.js</h2>
+					<pre style=""><code contenteditable>
+// Require module, and make it available throughout your app
+Alloy.Globals.Map = require('ti.map');
+					</code></pre>
+					
+					<div class="slidenote"><div class="l_slidenote_alloyjs"></div></div>
+				</section>
+				
 
 				<section>
 					<h2 style="" class="l_mapalloy">Maps View</h2>
 					<pre style=""><code contenteditable>
 &lt;&lt;Alloy>
   &lt;Window class='container' id="win">
-    &lt;!-- Tags for iOS -->
-    &lt;View id="map" ns="Ti.Map" platform="ios">
-        &lt;Annotation id="annotation1"/>
-    &lt;/View>
-    &lt;View id="dividerLine" platform="ios"/>
-    &lt;View id="map1" ns="Ti.Map" platform="ios">
-        &lt;Annotation id="annotation2"/>
-    &lt;/View>
-
-    &lt;!-- Tags for Android -->
-    &lt;Module id="map" module="ti.map" method="createView" platform="android"/>
-    &lt;!-- Annotations can't be set in the XML (yet) -->
-    &lt;View id="dividerLine" platform="android"/>
-    &lt;Module id="map1" module="ti.map" method="createView" platform="android"/>
+    &lt;View id="map" ns="Alloy.Globals.Map">&lt;/View>
+    &lt;View id="dividerLine"/>
+    &lt;View id="map1" ns="Alloy.Globals.Map">&lt;/View>
   &lt;/Window>
 &lt;/Alloy>
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_mapalloy">Note the Module tag and its attributes. This creates a view of the type specified by the native module. While it's a container tag, as of Alloy 1.2, you can't define annotations within the Module tag. Also note that the two platforms use the same ID for the map view so that the TSS and controller code can be largely the same.</div></div>
+					<div class="slidenote"><div class="l_slidenote_mapalloy">The only trick here is to set the namespace to point to the global variable you defined in the alloy.js file. This informs Titanium "where to look" for the maps.createView() command.</div></div>
 				</section>
 
 				<section>
@@ -245,55 +291,37 @@
     animate: true,
     height: '50%',
     top: 0,
-	region: { latitude: 37.38, latitudeDelta: 0.2, longitude: -122.05, longitudeDelta: 0.2 	}
+    region: { latitude: 37.38, latitudeDelta: 0.2, 
+       longitude: -122.05, longitudeDelta: 0.2 	}
 },
 "#map1": {
     userLocation: false,
     animate: true,
     height: '50%',
     top: '50%',
-    region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 }
+    region: {latitude: -33.87365, longitude: 151.20689, 
+       latitudeDelta: 0.1, longitudeDelta: 0.1 }
 }
-"#annotation1[platform=ios]": {
-	title:"Mountain View", 
-	latitude:37.389569, 
-	longitude:-122.050212
-},
-"#annotation2[platform=ios]": {
-    title:"Sydney", 
-    latitude: -33.87365, 
-    longitude: 151.20689
-}
-
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_maptss">We can set map properties in the TSS, such as its region, display of user location, and so forth. Because the annotations are created in code for Android, the annotation classes are marked iOS only. </div></div>
+					<div class="slidenote"><div class="l_slidenote_maptss">We can set map properties in the TSS, such as its region, display of user location, and so forth. Because the annotations are created in code, the annotations will be styled in the controller. </div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_mappjs">Associated Controller</h2>
 					<pre style=""><code contenteditable>
-if(OS_ANDROID) {
-    // need reference to ti.map even though we're adding it via the XML
-    var MapModule = require('ti.map');
-
-    // for now, must add annotations in code
-    var anno1 = MapModule.createAnnotation({
-        title:"Mountain View", 
-        latitude:37.389569, 
-        longitude:-122.050212
-    });
-    $.map.addAnnotation(anno1);
-    var anno2 = MapModule.createAnnotation({
-        title:"Sydney", 
-        latitude: -33.87365, 
-        longitude: 151.20689
-    });
-    $.map1.addAnnotation(anno2);
-    
-    // have to set properties that rely on module constants in the controller
-    $.map1.mapType = MapModule.TERRAIN_TYPE;
-}
-
+// add some annotations, must be done in code
+var anno1 = Alloy.Globals.Map.createAnnotation({
+    title:"Mountain View", 
+    latitude:37.389569, 
+    longitude:-122.050212
+});
+$.map.addAnnotation(anno1);
+var anno2 = Alloy.Globals.Map.createAnnotation({
+    title:"Sydney", 
+    latitude: -33.87365, 
+    longitude: 151.20689
+});
+$.map1.addAnnotation(anno2);
 
 $.win.open();
 
@@ -301,6 +329,14 @@ $.win.open();
 					<div class="slidenote"><div class="l_slidenote_mappjs">In the controller, we need a handle to the native module because it provides the methods and constants required.</div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_androidspecifics">Android Specifics</h5>
+					<div class="slidenote"><div class="l_slidenote_androidspecifics"></div></div>
+				</section>
+				
+				
 				<section>
 					<h2 style="" class="l_androidmapsgeneral">Android Maps: General Procedure</h2>
 					<ol style="width:80%;">
@@ -339,11 +375,71 @@ $.win.open();
 					<div class="slidenote"><div class="l_slidenote_tiapp">Despite what the docs say, you have to download the module from the Marketplace. </div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_iosspecifics">iOS Specifics</h5>
+					<div class="slidenote"><div class="l_slidenote_iosspecifics"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_iosnotes">iOS Notes</h2>
+					<ul style="width:80%;">
+						<li class="l_iosnodes1">No API key needed</li>
+						<li class="l_iosnodes2">New 3D perspective</li>
+						<li class="l_iosnodes3">Panning past 180/-180&deg; longitude now supported</li>
+						<li class="l_iosnodes4">New overlay rendering and placement options</li>
+						<li class="l_iosnodes5">Additional properties (e.g. tintColor)</li>
+					</ul>
+					
+					<div class="slidenote"><div class="l_slidenote_iosnotes"></div></div>
+				</section>
+				
+				<section>
+					<h2 style="" class="l_cameraview">Camera View</h2>
+					<p class="l_camview">Add static or animated "camera" to enable 3D perspective</p>
+					
+					<ul style="width:25%;float:left;font-size:smaller;">
+						<li class="l_cameraview1">altitude: meters above surface</li>
+						<li class="l_cameraview2">centerCoordinate: camera position</li>
+						<li class="l_cameraview3">heading: camera aiming, relative to true north</li>
+						<li class="l_cameraview4">pitch: viewing angle (0 straight down)</li>
+					</ul>
+<pre style="width:74%;float:right;"><code contenteditable>
+// add the iOS7-specific camera view 
+if(OS_IOS && parseInt(Ti.Platform.version, 10)>=7) {
+    var cam = Alloy.Globals.Map.createCamera({
+        altitude: 300, 
+        centerCoordinate: {
+            latitude:37.389569, 
+            longitude:-122.050212
+        }, 
+        heading: -45, 
+        pitch: 60,
+        showsBuildings: true
+    });
+    var animCam = function(){
+        $.map.removeEventListener('complete', animCam);
+        $.map.animateCamera({
+            camera: cam,
+            curve: Ti.UI.ANIMATION_CURVE_EASE_IN,
+            duration: 500
+        });
+    };
+    $.map.addEventListener('complete', animCam);
+}
+
+</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_cameraview">To add a non-animated camera, you would set the map.camera property equal to your camera object. The map would be rendered showing the camera view, as opposed to being rendered then having the view animate to the camera's perspective.</div></div>
+				</section>
+				
+				
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
 					<h2 style="" class="l_demo">Maps Demo</h2>
-				    <img src="images/mapdemo.png" style="width:600px;"/>
+				    <img src="images/newmapdemo.png" style="width:360px;"/>
 					<div class="slidenote"><div class="l_slidenote_demo">The MapsDemo app is provided in the labcode/Demos folder. </div></div>
 				</section>
 

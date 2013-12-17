@@ -539,6 +539,11 @@ Ti.App.addEventListener('databaseUpdated', function() {
 		<td>320 dpi, 96x96 px</td>
 		<td>/platform/android/res/drawable-xdpi/appicon.png</td>
 	</tr>
+	<tr>
+		<td>xxdpi</td>
+		<td>480 dpi, 144x144 px</td>
+		<td>/platform/android/res/drawable-xxdpi/appicon.png</td>
+	</tr>
 </table>
 					<div class="slidenote"><div class="l_slidenote_appicon"></div></div>
 				</section>
@@ -579,7 +584,7 @@ Ti.App.addEventListener('databaseUpdated', function() {
 						<li class="l_splashscreenandroid3">Option 3: Use a 9-patch image<br/>(See http://goo.gl/P950R)</li>
 					</ul>
 				    <img src="images/androidsplashscreens.png" style="width:400px;"/>
-					<div class="slidenote"><div class="l_slidenote_splashscreensandroid">Graphic shows layout of res directories. Naming scheme supports basic handset variations. However, there are no such conventions for tablets and "phablets." There are a couple of tickets for 9-patch images; check for current support: <a href="https://jira.appcelerator.org/browse/TIMOB-10801">TIMOB-10801</a> and <a href="https://jira.appcelerator.org/browse/TIMOB-12068">TIMOB-12068</a></div></div>
+					<div class="slidenote"><div class="l_slidenote_splashscreensandroid">Graphic shows layout of res directories. Naming scheme supports basic handset variations. However, there are no such conventions for tablets and "phablets." As of Titanium 3.2, 9-patch images for splash screens appears to be stable and well-supported. The biggest challenge is creating the 9-patch image so that it stretches as you intend. </div></div>
 				</section>
 
 				<section>
