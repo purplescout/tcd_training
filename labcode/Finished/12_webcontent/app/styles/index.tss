@@ -1,3 +1,6 @@
+"Window[platform=ios]": {
+  top: Alloy.Globals.winTop
+},
 ".container": {
 	backgroundColor:"white"
 },

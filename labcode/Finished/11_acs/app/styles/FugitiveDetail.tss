@@ -20,7 +20,8 @@
 "#image" : {
 		height:80,
 		width:60,
-		top:10
+		top:10,
+		image: 'images/burglar.png'
 },
 "#name_tf[platform=android]" : {
 		height:Ti.UI.SIZE

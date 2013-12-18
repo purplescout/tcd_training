@@ -12,7 +12,7 @@ $.save_button.addEventListener('click', function(_e) {
 
     var fugitiveModel = Alloy.createModel("Fugitive", {
         name : $.name_tf.value,
-        captured : 0
+        captured : false
     });
 
     // save model
@@ -22,5 +22,5 @@ $.save_button.addEventListener('click', function(_e) {
     Alloy.Collections.Fugitive.fetch();
 
     // close window
-    $.fugitiveAddWindow.close()
+    $.fugitiveAddWindow.close();
 });

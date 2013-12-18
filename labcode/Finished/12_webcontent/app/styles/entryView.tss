@@ -25,7 +25,8 @@
 	borderColor: '#ddd',
 	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
 	borderRadius: 6,
-	textAlign: 'center'
+	textAlign: 'center',
+	color: 'black'
 },
 "#c": {
 	editable: false

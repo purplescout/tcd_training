@@ -1,6 +1,6 @@
 <Alloy>
 	<!-- Add your reference to the collection here -->
-	<Tab id="fugitiveTab" title="Fugitives" icon="images/fugitives.png">
+	<Tab id="fugitiveTab" title="Fugitives">
 		<Window title="Fugitives">
 			<!-- Update table tag to include reference to data collection -->
 			<TableView id='fugitives'>

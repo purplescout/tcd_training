@@ -6,6 +6,6 @@
 "TableView" : {
 	backgroundColor: "transparent"
 },
-"Tab":{
+"Tab[platform=ios]":{
 	icon: 'images/fugitives.png'
 }

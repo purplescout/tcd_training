@@ -1,5 +1,5 @@
 <Alloy>
-	<Tab id="capturedTab" title="Captured" icon="images/captured.png">
+	<Tab id="capturedTab" title="Captured">
 		<Window title="Captured">
 			<TableView id='captured'/>
 		</Window>

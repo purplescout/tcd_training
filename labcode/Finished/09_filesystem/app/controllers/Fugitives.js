@@ -8,7 +8,7 @@ var fugitiveCollection = Alloy.Collections.Fugitive;
 function dofilter(_collection) {
 //    debugger;
     return fugitiveCollection.filter(function(_i){
-        return !_i.attributes.captured
+        return !_i.attributes.captured;
     });
 }
 // ..
@@ -43,4 +43,3 @@ if (Ti.Platform.osname === 'iphone') {
     $.add.addEventListener('click', addNewFugitive);
     $.fugitiveWindow.setRightNavButton($.add);
 }
-

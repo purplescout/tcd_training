@@ -11,16 +11,6 @@ Cloud.debug = true;
 // Persist the user's login status -- by default, they're
 // logged out when the app closes
 var sid = Ti.App.Properties.getString('sessionid');
-/*
-if(sid) {
-	Cloud.sessionId = sid;
-	var me = Cloud.Users.showMe(function(e) {
-        loggedIn = true;
-		currentUser = e.users[0];
-	});
-}
-*/
-
 exports.isLoggedIn = function() {
     if(typeof arguments[0] == 'function') {
         var cb = arguments[0];

@@ -1,0 +1,1 @@
+module.exports = [{"isApi":true,"priority":1000.0026,"key":"Window","style":{backgroundColor:"transparent",backgroundImage:"images/grain.png",title:"Fugitives",barColor:"#6d0a0c",}},{"isClass":true,"priority":10000.0024,"key":"container","style":{backgroundColor:"white",}},{"isId":true,"priority":100000.0027,"key":"table","style":{backgroundColor:"transparent",}}];

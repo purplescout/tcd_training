@@ -70,7 +70,7 @@ $.photo_button.addEventListener('click', function(_e) {
     };
 
     // display camera OR gallery
-    if (Ti.Media.isCameraSupported) {
+    if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk' && Ti.Platform.manufacturer != 'Genymotion') {
         Ti.Media.showCamera(cameraOptions);
     } else {
         Ti.Media.openPhotoGallery(cameraOptions);

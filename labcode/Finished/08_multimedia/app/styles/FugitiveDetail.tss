@@ -20,7 +20,8 @@
 "#image" : {
 		height:80,
 		width:80,
-		top:10
+		top:10,
+		image: '/images/burglar.png'
 },
 "#photo_button" :{
 		title:'Add Photo',

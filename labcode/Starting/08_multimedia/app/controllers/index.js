@@ -36,3 +36,15 @@ if (!Ti.App.Properties.hasProperty('seeded')) {
 
 // force tables to update
 Alloy.Collections.Fugitive.fetch();
+
+
+if(OS_ANDROID) {
+    // Add the app's name to the Android action bar
+    $.tabGroup.addEventListener('open', function(e) {
+        var activity = $.tabGroup.getActivity(); 
+        if (activity != undefined && activity.actionBar != undefined) {
+            // set the title to the app name defined in tiapp.xml
+            activity.actionBar.title = Ti.App.name; 
+        }
+    });
+}

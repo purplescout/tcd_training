@@ -50,13 +50,15 @@ $.photo_button.addEventListener('click', function(_e) {
 
             // set image on window
             $.image.image = image;
+            
+            // args.data is our model
+            var fugitiveModel = args.data;
 
             //save for future use
-            var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo' + args.data.get("alloy_id") + '.png');
+            var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo' + fugitiveModel.get("alloy_id") + '.png');
             f.write(image);
 
             // update the model and save
-            var fugitiveModel = args.data;
             fugitiveModel.set("url", f.nativePath);
             fugitiveModel.save();
 
@@ -84,7 +86,7 @@ $.photo_button.addEventListener('click', function(_e) {
     };
 
     // display camera OR gallery
-    if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk') {
+    if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk' && Ti.Platform.manufacturer != 'Genymotion') {
         Ti.Media.showCamera(cameraOptions);
     } else {
         Ti.Media.openPhotoGallery(cameraOptions);
