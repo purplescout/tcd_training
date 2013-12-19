@@ -1,19 +1,7 @@
 <Alloy>
   <Window class='container' id="win">
-  	<!-- Tags for iOS -->
-    <View id="map" ns="Ti.Map" platform="ios">
-		<Annotation id="annotation1"/>
-    </View>
-    <View id="dividerLine" platform="ios"/>
-    <View id="map1" ns="Ti.Map" platform="ios">
-		<Annotation id="annotation2"/>
-    </View>
-
-  	<!-- Tags for Android -->
-
-    <Module id="map" module="ti.map" method="createView" platform="android"/>
-    <!-- Annotations can't be set in the XML (yet) -->
-    <View id="dividerLine" platform="android"/>
-    <Module id="map1" module="ti.map" method="createView" platform="android"/>
+  	<View id="mapview" ns="Alloy.Globals.Map" id="map"></View>
+    <View id="dividerLine"/>
+  	<View id="mapview" ns="Alloy.Globals.Map" id="map1"></View>
   </Window>
 </Alloy>

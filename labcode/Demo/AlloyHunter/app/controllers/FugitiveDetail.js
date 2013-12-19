@@ -86,7 +86,7 @@ $.photo_button.addEventListener('click', function(_e) {
     };
 
     // display camera OR gallery
-    if (Ti.Media.isCameraSupported) {
+    if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk' && Ti.Platform.manufacturer != 'Genymotion') {
         Ti.Media.showCamera(cameraOptions);
     } else {
         Ti.Media.openPhotoGallery(cameraOptions);
@@ -158,7 +158,7 @@ $.capture_button.addEventListener('click', function(_e) {
             } else {
                 Ti.UI.createAlertDialog({
                     title : "Error",
-                    message : 'Geolocation failed. Do you have a location set on your Android emulator?'
+                    message : JSON.stringify(e) + '\nGeolocation failed. Do you have a location set on your Android emulator?'
                 }).show();
             }
         });

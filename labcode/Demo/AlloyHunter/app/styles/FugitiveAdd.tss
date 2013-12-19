@@ -10,9 +10,9 @@
 },
 
 "#name_tf" : {
-		height: 40,
+		height: '40dp',
 		top:50,
-		width:250,
+		width:'250dp',
 		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 		returnKeyType:Titanium.UI.RETURNKEY_DONE,
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -24,6 +24,6 @@
 "#save_button" :{
 		title:"Save",
 		height:Ti.UI.SIZE,
-		width:80,
+		width:'80dp',
 		top:10
 }

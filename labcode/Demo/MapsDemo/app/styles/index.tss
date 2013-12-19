@@ -15,16 +15,6 @@
     top: '50%',
     region: {latitude: -33.87365, longitude: 151.20689, latitudeDelta: 0.1, longitudeDelta: 0.1 }
 }
-"#annotation1[platform=ios]": {
-	title:"Mountain View", 
-	latitude:37.389569, 
-	longitude:-122.050212
-},
-"#annotation2[platform=ios]": {
-    title:"Sydney", 
-    latitude: -33.87365, 
-    longitude: 151.20689
-}
 "#dividerLine": {
 	backgroundColor: 'black',
 	height: 1,

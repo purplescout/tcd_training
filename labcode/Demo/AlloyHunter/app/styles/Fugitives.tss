@@ -1,15 +1,24 @@
 ".container": {
 	backgroundColor: "white"
 },
-"Tab" : {
-	icon: '/images/fugitives.png',
+"Tab[platform=ios]": {
+	icon: '/images/fugitives.png'
 },
 "Window": {
 		backgroundColor:'transparent',
 		backgroundImage: 'images/grain.png',
 		title: 'Fugitives',
-		barColor: '#6d0a0c',
+		barColor: '#6d0a0c'
 },
-'#table' : {
+'#table': {
 	backgroundColor: 'transparent'
+}
+"#add" : {
+  
+}
+"#fugitiveTab" : {
+  
+}
+"#fugitiveWindow" : {
+  
 }

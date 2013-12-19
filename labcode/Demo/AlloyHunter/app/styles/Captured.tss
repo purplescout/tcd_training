@@ -1,7 +1,7 @@
 ".container": {
 	backgroundColor: "white"
 },
-"Tab" : {
+"Tab[platform=ios]": {
 	icon: '/images/captured.png',
 },
 "Window": {
