@@ -24,6 +24,6 @@
 "#save_button" :{
 		title:"Save",
 		height:Ti.UI.SIZE,
-		width:'80dp',
+		width:80,
 		top:10
 }

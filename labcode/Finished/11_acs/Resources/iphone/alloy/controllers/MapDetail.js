@@ -13,26 +13,24 @@ function Controller() {
         id: "mapWindow"
     });
     $.__views.mapWindow && $.addTopLevelView($.__views.mapWindow);
-    var __alloyId16 = [];
-    $.__views.mapView = Ti.Map.createView({
-        mapType: Ti.Map.STANDARD_TYPE,
+    $.__views.mapView = Alloy.Globals.Map.createView({
+        mapType: Alloy.Globals.Map.NORMAL_TYPE,
         animate: true,
         regionFit: true,
         userLocation: false,
-        annotations: __alloyId16,
-        ns: Ti.Map,
+        ns: "Alloy.Globals.Map",
         id: "mapView"
     });
     $.__views.mapWindow.add($.__views.mapView);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    var ann = Ti.Map.createAnnotation({
+    var ann = Alloy.Globals.Map.createAnnotation({
         latitude: args.model.get("capturedLat"),
         longitude: args.model.get("capturedLong"),
         title: args.model.get("name"),
         subtitle: "busted",
-        pincolor: Ti.Map.ANNOTATION_RED,
+        pincolor: Alloy.Globals.Map.ANNOTATION_RED,
         animate: true
     });
     $.mapView.addAnnotation(ann);

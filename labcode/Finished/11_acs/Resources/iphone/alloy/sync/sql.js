@@ -151,7 +151,9 @@ function Sync(method, model, opts) {
         break;
 
       case "read":
-        sql = opts.query || "SELECT * FROM " + table;
+        opts.query && opts.id && Ti.API.warn('Both "query" and "id" options were specified for model.fetch(). "id" will be ignored.');
+        sql = "SELECT * FROM " + table;
+        opts.query ? sql = opts.query : opts.id && (sql += " WHERE " + model.idAttribute + " = " + opts.id);
         db = Ti.Database.open(dbName);
         var rs;
         rs = _.isString(sql) ? db.execute(sql) : db.execute(sql.statement, sql.params);
@@ -185,7 +187,9 @@ function Sync(method, model, opts) {
     }
     if (resp) {
         _.isFunction(opts.success) && opts.success(resp);
-        "read" === method && model.trigger("fetch");
+        "read" !== method || opts.silent || model.trigger("fetch", {
+            fromAdapter: true
+        });
     } else _.isFunction(opts.error) && opts.error(resp);
 }
 

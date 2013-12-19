@@ -29,6 +29,10 @@ exports.Backbone = Backbone;
 
 var DEFAULT_WIDGET = "widget";
 
+var TI_VERSION = Ti.version;
+
+var MW320_CHECK = false;
+
 var IDENTITY_TRANSFORM = void 0;
 
 var RESET = {
@@ -160,12 +164,16 @@ exports.createStyle = function(controller, opts, defaults) {
     _.extend(styleFinal, extraStyle);
     styleFinal[CONST.CLASS_PROPERTY] = classes;
     styleFinal[CONST.APINAME_PROPERTY] = apiName;
+    MW320_CHECK && delete styleFinal[CONST.APINAME_PROPERTY];
     return defaults ? _.defaults(styleFinal, defaults) : styleFinal;
 };
 
 exports.addClass = function(controller, proxy, classes, opts) {
     if (!classes) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     var pClasses = proxy[CONST.CLASS_PROPERTY] || [];
@@ -173,7 +181,10 @@ exports.addClass = function(controller, proxy, classes, opts) {
     classes = _.isString(classes) ? classes.split(/\s+/) : classes;
     var newClasses = _.union(pClasses, classes || []);
     if (beforeLen === newClasses.length) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     processStyle(controller, proxy, newClasses, opts);
@@ -184,13 +195,19 @@ exports.removeClass = function(controller, proxy, classes, opts) {
     var pClasses = proxy[CONST.CLASS_PROPERTY] || [];
     var beforeLen = pClasses.length;
     if (!beforeLen || !classes.length) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     classes = _.isString(classes) ? classes.split(/\s+/) : classes;
     var newClasses = _.difference(pClasses, classes);
     if (beforeLen === newClasses.length) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     processStyle(controller, proxy, newClasses, opts, RESET);

@@ -6,21 +6,21 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    var __alloyId18 = [];
-    $.__views.__alloyId19 = Alloy.createController("Fugitives", {
-        id: "__alloyId19"
+    var __alloyId17 = [];
+    $.__views.__alloyId18 = Alloy.createController("Fugitives", {
+        id: "__alloyId18"
     });
-    __alloyId18.push($.__views.__alloyId19.getViewEx({
+    __alloyId17.push($.__views.__alloyId18.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId21 = Alloy.createController("Captured", {
-        id: "__alloyId21"
+    $.__views.__alloyId20 = Alloy.createController("Captured", {
+        id: "__alloyId20"
     });
-    __alloyId18.push($.__views.__alloyId21.getViewEx({
+    __alloyId17.push($.__views.__alloyId20.getViewEx({
         recurse: true
     }));
     $.__views.tabGroup = Ti.UI.createTabGroup({
-        tabs: __alloyId18,
+        tabs: __alloyId17,
         id: "tabGroup"
     });
     $.__views.tabGroup && $.addTopLevelView($.__views.tabGroup);

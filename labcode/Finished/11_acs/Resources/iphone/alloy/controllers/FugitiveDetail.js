@@ -123,7 +123,7 @@ function Controller() {
             allowEditing: true,
             mediaTypes: [ Ti.Media.MEDIA_TYPE_PHOTO ]
         };
-        Ti.Media.isCameraSupported && "google_sdk" != Ti.Platform.model ? Ti.Media.showCamera(cameraOptions) : Ti.Media.openPhotoGallery(cameraOptions);
+        Ti.Media.isCameraSupported && "google_sdk" != Ti.Platform.model && "Genymotion" != Ti.Platform.manufacturer ? Ti.Media.showCamera(cameraOptions) : Ti.Media.openPhotoGallery(cameraOptions);
     });
     $.map_button.addEventListener("click", function() {
         if (args.data.get("capturedLat")) {

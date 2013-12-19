@@ -1,14 +1,16 @@
 function Controller() {
-    function __alloyId6() {
+    function __alloyId6(e) {
+        if (e && e.fromAdapter) return;
         __alloyId6.opts || {};
         var models = dofilter(__alloyId5);
         var len = models.length;
         var rows = [];
         for (var i = 0; len > i; i++) {
-            var __alloyId3 = models[i];
-            __alloyId3.__transform = {};
+            var __alloyId2 = models[i];
+            __alloyId2.__transform = {};
             var __alloyId4 = Alloy.createController("FugitiveRow", {
-                $model: __alloyId3
+                $model: __alloyId2,
+                __parentSymbol: __parentSymbol
             });
             rows.push(__alloyId4.getViewEx({
                 recurse: true
@@ -23,7 +25,7 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "Captured";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
+    var __parentSymbol = arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;

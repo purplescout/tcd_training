@@ -32,15 +32,6 @@ function Controller() {
         text: "undefined" != typeof $model.__transform["name"] ? $model.__transform["name"] : $model.get("name")
     });
     $.__views.__alloyId8.add($.__views.name);
-    $.__views.address = Ti.UI.createLabel({
-        color: "#000",
-        font: {
-            fontSize: "20dp"
-        },
-        id: "address",
-        text: "undefined" != typeof $model.__transform["address"] ? $model.__transform["address"] : $model.get("address")
-    });
-    $.__views.__alloyId8.add($.__views.address);
     exports.destroy = function() {};
     _.extend($, $.__views);
     _.extend($, exports);
