@@ -59,7 +59,7 @@
 	<li class="l_spec2">Uses the Android 'simple' technique for geolocation configuration.</li>
 	<li class="l_spec4">Shows a 'View on Map' button on the details window of captured fugitives.</li>
 	<li class="l_spec3">Clicking the View on Map button will display a map plotting the recorded location for fugitives who have been captured.</li>
-	<li class="l_spec5">Uses the Ti.Map external module for both iOS and Android. If you're building to the Google or Genymotion Android emulator, you won't need to obtain and configure a Google Maps API v2 key. (You will need to do so if you build to a device.)</li>
+	<li class="l_spec5">Uses the Ti.Map external module for both iOS and Android. You will need to obtain and configure a Google Maps API v2 key, which means you'll need a Google (Gmail) account. That account does not need to be registered as an Android development account.</li>
 </ul>
 
 <table>
@@ -72,24 +72,15 @@
 	</tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep2new">2. Download the Ti.Map module for iOS and Android and install both into your Titanium development environment (or to the project).</td>
+	<td colspan="2" class="labinstructions l_labstep2">2. Download the Ti.Map module for iOS and Android and install both into your Titanium development environment (or to the project).</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation2new">You can download the modules from the <a href="https://marketplace.appcelerator.com/" target="_blank">Marketplace</a> or <a href="https://github.com/appcelerator-modules/ti.map" target="_blank">https://github.com/appcelerator-modules/ti.map</a>.</td>
-</tr>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<tr>
-	<td colspan="2" class="labinstructions l_labstep2">3. In the FugitiveDetail.js controller, update the capture button's event listener. Specify the geolocation purpose of 'Tracking down criminal scum' and add an if/then block that determines if location services are enabled. If they are not, output an error message to the user.</td>
-</tr>
-<tr>
-	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation2"></td>
+	<td class="labexplanations l_labstepexplanation2">You can download the modules from the <a href="https://marketplace.appcelerator.com/" target="_blank">Marketplace</a> or <a href="https://github.com/appcelerator-modules/ti.map" target="_blank">https://github.com/appcelerator-modules/ti.map</a>.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep3">4. Within the if/then block, set the location to ACCURACY_HIGH (Android) or ACCURACY_BEST (iOS). Then, add a getCurrentPosition() call.</td>
+	<td colspan="2" class="labinstructions l_labstep3">3. Update the tiapp.xml with the necessary Google Maps keys as documented on <a href="http://docs.appcelerator.com/titanium/latest/#!/guide/Google_Maps_v2_for_Android" target="_blank">this page of the docs</a>. Update that XML code in the two places indicated with your app's AppID.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -97,39 +88,43 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep4">5. Within the getCurrentPosition() call, add an if/then block that tests for a geolocation error. Because such an error would most likely happen on Android when running within the emulator, alert a message reminding the user to set a location within their Android emulator.</td>
+	<td colspan="2" class="labinstructions l_labstep4">4. Create an Android Maps API V2 key by following these steps:<br/><ul style="width:100%;">
+		<li class="l_apikey1">Visit https://cloud.google.com/console?redirected=true#/project and log into your Google account (if necessary)</li>
+		<li class="l_apikey2">If you do not already have a project, create a project with a name of your choice.</li>
+		<li class="l_apikey3">On the left, click APIs &amp; Auth</li>
+		<li class="l_apikey4">Locate 'Google Maps Android API v2' and click Off (to turn this API on) then click Google Maps Android API v2.</li>
+		<li>On the left, click Registered Apps, then click the Register App button.</li>
+		<li>Enter TCD_Geolocation for the name, select Android as the platform, and enter your app's App ID in the Package Name box.</li>
+		<li>To determine the SHA1 key associated with Appcelerator's test development account (not suitable for publishing), open a terminal/command prompt window and enter the following command (on OS X, Windows will be slightly different):<br/><pre><code>keytool -list -v -keystore ~/Library/Application\ Support/Titanium/mobilesdk/osx/YOUR_TI_SDK_VERSION_HERE/android/dev_keystore</code></pre>When prompted for the password, press Enter.</li>
+		<li>Copy the SHA1 key from the output and paste it into the SHA1 fingerprint box in the API console and then click Register.</li>
+		<li>Copy the resulting API key and paste it into the XML of your tiapp.xml file in the place indicated in that sample code.</li>
+	</ul>
+	</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
 	<td class="labexplanations l_labstepexplanation4"></td>
 </tr>
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep5">6. Within the "no errors block" of the getCurrentPosition() call, create a reference to the model (args.data) and set its capturedLat and capturedLong properties to the values returned by the geolocation function. To simplify this lab, we will avoid some careful error checking and handling; put your set("captured", 1) statement within the getCurrentPosition() function for the case where no geolocation error was encountered. </td>
+	<td colspan="2" class="labinstructions l_labstep5">5. In the FugitiveDetail.js controller, update the capture button's event listener. Specify the geolocation purpose of 'Tracking down criminal scum' and add an if/then block that determines if location services are enabled. If they are not, output an error message to the user.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation5">In a real world app, you'd probably want to still mark the fugitive as captured if the user denies the geolocation request. As written, the app will simply display an error. In reality, you'd want to mark the fugitive captured and set either default lat/long coordinates or handle the missing coordinates when the user later tries to view the map.</td>
+	<td class="labexplanations l_labstepexplanation5"></td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep6">7. Add an alert() message that informs the user that he or she has successfully captured the fugitive. Then, add a statement to close the detail window. However, on Android, use a 2-second pause before closing the window.</td>
+	<td colspan="2" class="labinstructions l_labstep6">6. Within the if/then block, set the location to ACCURACY_HIGH (Android) or ACCURACY_BEST (iOS). Then, add a getCurrentPosition() call.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation6">On Android, alert dialogs are modal to the window that opened them; on iOS they are modal to the app. If you didn't add the pause on Android, users would never see the alert because it would disappear as the window closes.</td>
+	<td class="labexplanations l_labstepexplanation6"></td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep8new">8. In the alloy.js file, define a global variable and in it store a reference to the module.</td>
-</tr>
-<tr>
-	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation8new"></td>
-</tr>
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<tr>
-	<td colspan="2" class="labinstructions l_labstep7">9. Add a MapDetail view, style, and controller. In the view, define a window with an id of mapWindow that contains a map view with an id of mapView. Make sure to reference your global variable in the ns (namespace) attribute. In the tss file, set the window title to Captured Location and bar color to #6d0a0c. Set the map view to a standard map type, set animate and regionFit to true, and userLocation to false. Also assign the map an empty array of annotations. Finally, in the controller, define an annotation for the bounty's latitude &amp; longitude. Use their name as the annotation title with a subtitle of 'busted'. Add the annotation to the map. Then, define the map's region to be centered on the bounty's lat/long with delta values of 0.1 degrees.</td>
+	<td colspan="2" class="labinstructions l_labstep7">7. Within the getCurrentPosition() call, add an if/then block that tests for a geolocation error. Because such an error would most likely happen on Android when running within the emulator, alert a message reminding the user to set a location within their Android emulator.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
@@ -137,20 +132,52 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep8">9. Back in the FugitiveDetail controller, add a click handler to the map button. If the capturedLat property exists and isn't empty, use createController() to instantiate the 'MapDetail' controller, passing the model data. Then, open that controller's associated view by calling the parentTab's open() method.</td>
+	<td colspan="2" class="labinstructions l_labstep8">8. Within the "no errors block" of the getCurrentPosition() call, create a reference to the model (args.data) and set its capturedLat and capturedLong properties to the values returned by the geolocation function. To simplify this lab, we will avoid some careful error checking and handling; put your set("captured", 1) statement within the getCurrentPosition() function for the case where no geolocation error was encountered. </td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation8"> </td>
+	<td class="labexplanations l_labstepexplanation8">In a real world app, you'd probably want to still mark the fugitive as captured if the user denies the geolocation request. As written, the app will simply display an error. In reality, you'd want to mark the fugitive captured and set either default lat/long coordinates or handle the missing coordinates when the user later tries to view the map.</td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep9">9. Add an alert() message that informs the user that he or she has successfully captured the fugitive. Then, add a statement to close the detail window. However, on Android, use a 2-second pause before closing the window.</td>
+</tr>
+<tr>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation9">On Android, alert dialogs are modal to the window that opened them; on iOS they are modal to the app. If you didn't add the pause on Android, users would never see the alert because it would disappear as the window closes.</td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep10">10. In the alloy.js file, define a global variable and in it store a reference to the module.</td>
+</tr>
+<tr>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation10"></td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep11">11. Add a MapDetail view, style, and controller. In the view, define a window with an id of mapWindow that contains a map view with an id of mapView. Make sure to reference your global variable in the ns (namespace) attribute. In the tss file, set the window title to Captured Location and bar color to #6d0a0c. Set the map view to a "normal" map type, set animate and regionFit to true, and userLocation to false. Also assign the map an empty array of annotations. Finally, in the controller, define an annotation for the bounty's latitude &amp; longitude. Use their name as the annotation title with a subtitle of 'busted'. Add the annotation to the map. Then, define the map's region to be centered on the bounty's lat/long with delta values of 0.1 degrees.</td>
+</tr>
+<tr>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation11"></td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep12">12. Back in the FugitiveDetail controller, add a click handler to the map button. If the capturedLat property exists and isn't empty, use createController() to instantiate the 'MapDetail' controller, passing the model data. Then, open that controller's associated view by calling the parentTab's open() method.</td>
+</tr>
+<tr>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation12"> </td>
 </tr>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep9">9. Save all the files you have changed. Build your app for the iOS simulator or Android emulator. Make sure to permit the location detection (if running on iOS) so that the lat/long can be determined. Correct any problems that exist. </td>
+	<td colspan="2" class="labinstructions l_labstep13">13. Save all the files you have changed. Build your app for the iOS simulator or Android emulator. Make sure to permit the location detection (if running on iOS) so that the lat/long can be determined. Correct any problems that exist. </td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation9"></td>
+	<td class="labexplanations l_labstepexplanation13"></td>
 </tr>
 </table>
 

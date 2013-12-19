@@ -50,7 +50,7 @@
 
 <!-- YOUR LAB CONTENT GOES HERE -->
 <h1 class="l_labname">Lab - Multimedia</h1>
-<p class="l_mission"><img src='labimages/finished_iphone.png' style='height:300px;float:right;margin-top:-40px;margin-bottom: 10px;'><strong>Mission: </strong>You will display an image on a details view for a fugitive within the TiBountyHunter app. You will also enable the user to select a photo from the camera or gallery.</p>
+<p class="l_mission"><img src='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Finished/08_finished_iphone.png' style='height:300px;float:right;margin-top:-40px;margin-bottom: 10px;'><strong>Mission: </strong>You will display an image on a details view for a fugitive within the TiBountyHunter app. You will also enable the user to select a photo from the camera or gallery.</p>
 
 <p class="l_specification"><strong>Specification: </strong>In this lab, you will modify the app created in the preceding lab. You will add an image placeholder and enable the user to pick a photo from the camera or gallery. You won't be saving the photo in this lesson (that will come in the next lesson).<br/><br/>To successfully complete this lab, you must develop an application that meets the following description:</p>
 
@@ -86,7 +86,7 @@
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep4">4. In the FugitiveDetail.js controller, add the photo button event listener as described by the comments in that file. The camera should be opened if it's supported; otherwise open the photo gallery picker. For Android, make sure to not open the camera in the emulator by including <code>Ti.Platform.model != 'google_sdk'</code> as part of your conditional statement. In the success callback, update your image view's image property with the media returned from the camera/gallery. Accept only photos (not videos) and don't save to the gallery or enable editing.</td>
+	<td colspan="2" class="labinstructions l_labstep4">4. In the FugitiveDetail.js controller, add the photo button event listener as described by the comments in that file. The camera should be opened if it's supported; otherwise open the photo gallery picker. For Android, make sure to not open the camera in the emulator by including <br/><pre><code>if (Ti.Media.isCameraSupported && Ti.Platform.model != 'google_sdk' && Ti.Platform.manufacturer != 'Genymotion')</code></pre> as part of your conditional statement. In the success callback, update your image view's image property with the media returned from the camera/gallery. Accept only photos (not videos) and don't save to the gallery or enable editing.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>

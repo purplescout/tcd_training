@@ -85,85 +85,101 @@
 
 <table>
 	<tr>
-		<td colspan="2" class="labinstructions l_step1">1. Download the starting file set from <a href='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Starting/11_acs.zip'>S3: 11_acs (Starting)</a>. Create a new project, making sure to cloud-enable the app. Overwrite your new project's app directory with the files you downloaded. </td>
+		<td colspan="2" class="labinstructions l_step1">1. Create a new project, making sure to cloud-enable the app. Give it a name and AppID of your choice. </td>
 	</tr>
 	<tr>
 		<td class="tdfiller"><!-- leave empty--></td>
-		<td class="labexplanations l_stepexplanation1">We can't provide a complete app to import because the GUID would be tied to our developer account and ACS app. You must create your own app so it's associated with your account. This also means you won't be able to run the finished code without replacing the GUID and re-cloud-enabling the app. The UI has been completed for you, and shells of the functions you must write are provided.</td>
+		<td class="labexplanations l_stepexplanation1"></td>
+	</tr>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tr>
+		<td colspan="2" class="labinstructions l_labstep2">2. Download the starting file set from <a href='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Starting/11_acs.zip'>S3: 11_acs (Starting)</a>. Overwrite your new project's app directory with the files you downloaded.</td>
+	</tr>
+	<tr>
+		<td class="tdfiller"><!-- leave empty--></td>
+		<td class="labexplanations l_labstepexplanation2">We can't provide a complete app to import because the GUID would be tied to our developer account and ACS app. You must create your own app so it's associated with your account. This also means you won't be able to run the finished code without replacing the GUID and re-cloud-enabling the app. The UI has been completed for you, and shells of the functions you must write are provided.</td>
 	</tr>
 </table>
 <table>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep1a">2. If building for Android, edit the tiapp.xml file and display the XML view. Add this tag to the XML: <code>&lt;property name="ti.android.threadstacksize" type="int">32768&lt;/property></code> and save your changes.</td>
+	<td colspan="2" class="labinstructions l_labstep3">3. If building for Android, edit the tiapp.xml file and display the XML view. Update the default measurement unit to be "dp" rather than "system." Then, add this tag to the XML: <pre><code>&lt;property name="ti.android.threadstacksize" type="int">32768&lt;/property></code></pre> Save your changes.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation1a">The app will crash with an error indicating insufficient stack space without this change.</td>
+	<td class="labexplanations l_labstepexplanation3">The app will crash with an error indicating insufficient stack space without this tag, which increases the app's stack (memory) size.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep2">3. Open lib/acs.js and examine the code that's provided for you.</td>
+	<td colspan="2" class="labinstructions l_labstep4">4. Open lib/acs.js and examine the code that's provided for you.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation2">Code to instantiate ti.cloud and persist a user's login session are already in the file. You'll need to write the createUser() and saveFugitive() functions.</td>
+	<td class="labexplanations l_labstepexplanation4">Code to instantiate ti.cloud and persist a user's login session are already in the file. You'll need to write the createUser() and saveFugitive() functions.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep3">4. Following the comments in the file, complete the createUser() function.</td>
+	<td colspan="2" class="labinstructions l_labstep5">5. Following the comments in the file, complete the createUser() function.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation3">It accepts three arguments: username, password, and callback (a function). Create the ACS user. If that's successful, save the session ID as an app property and set currentUser and loggedIn. Then, call callback() passing the current user object. If the create option fails, log the error to the console. Make sure loggedIn and currentUser are set back to their starting values. Call callback() passing false to it.</td>
+	<td class="labexplanations l_labstepexplanation5">It accepts three arguments: username, password, and callback (a function). Create the ACS user. If that's successful, save the session ID as an app property and set currentUser and loggedIn. Then, call callback() passing the current user object. If the create option fails, log the error to the console. Make sure loggedIn and currentUser are set back to their starting values. Call callback() passing false to it.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep4">5. Following the comments in the file, complete the saveFugitive() function.</td>
+	<td colspan="2" class="labinstructions l_labstep6">6. Following the comments in the file, complete the saveFugitive() function.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation4">It accepts a single argument, the fugitive object. Set the ACS custom object's classname to 'fugitive' and its field equal to the fugitive object passed to this function. Log a message to the console noting success or failure.</td>
+	<td class="labexplanations l_labstepexplanation6">It accepts a single argument, the fugitive object. Set the ACS custom object's classname to 'fugitive' and its field equal to the fugitive object passed to this function. Log a message to the console noting success or failure.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep5">6. In FugitiveDetail.js, update the capture button's click event listener. Where noted by the comment, save the fugitive to the cloud using your saveFugitive() method. Don't forget to require in the acs library.</td>
+	<td colspan="2" class="labinstructions l_labstep7">7. In FugitiveDetail.js, update the capture button's click event listener. Where noted by the comment, save the fugitive to the cloud using your saveFugitive() method. Don't forget to require in the acs library.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation5">While the acs.js file is in the lib folder, at build time it will be moved to the project's root directory. So don't include 'lib' in its path in your require() statement.</td>
+	<td class="labexplanations l_labstepexplanation7">While the acs.js file is in the lib folder, at build time it will be moved to the project's root directory. So don't include 'lib' in its path in your require() statement.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep6">7. In the Login.js controller, complete the createCallback() function. And add the createUser() call in the submit button's event click event listener.</td>
+	<td colspan="2" class="labinstructions l_labstep8">8. In the Login.js controller, complete the createCallback() function. And add the createUser() call in the submit button's event click event listener.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation6">createCallback() accepts the current user object as a parameter. If it's a valid object, hide the logincontainer view. Otherwise, set the submit button's title to 'Try again...' and after one second, set it back to 'Create Account'. In the submit button's handler, call your createUser() function, passing the user's name, password, and the createCallback() function.</td>
+	<td class="labexplanations l_labstepexplanation8">createCallback() accepts the current user object as a parameter. If it's a valid object, hide the logincontainer view. Otherwise, set the submit button's title to 'Try again...' and after one second, set it back to 'Create Account'. In the submit button's handler, call your createUser() function, passing the user's name, password, and the createCallback() function.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep7">8. Save changes in all the files. Then run the project in the simulator/emulator or on device.</td>
+	<td colspan="2" class="labinstructions l_labstep9">(Optional) 9. Follow the steps in the <a href="https://wiki.appcelerator.org/display/td/10.+Geolocation+and+Mapping" target="_blank">Geolocation &amp; Mapping lab</a> to enable maps on iOS and Android. You'll need to generate a new Google Maps API key (or update an existing one to support the additional AppID), modify the tiapp.xml, and include the iOS and Android maps module. </td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation7">The first time you run the app, you should be prompted to create a user.</td>
+	<td class="labexplanations l_labstepexplanation9">The app will work without this step as long as you don't try to view the map. If you do, the app will crash.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep8">9. After creating the user in the app, log onto the ACS control panel (visit my.appcelerator.com). Make sure you're working in the Development perspective. Then check the Users objects for your app. Your new user should be listed.</td>
+	<td colspan="2" class="labinstructions l_labstep10">10. Save changes in all the files. Then run the project in the simulator/emulator or on device.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation8"></td>
+	<td class="labexplanations l_labstepexplanation10">The first time you run the app, you should be prompted to create a user.</td>
 </tr>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_labstep9">10. In the app, capture a fugitive. Then, check the ACS control panel. You should see the fugitive data listed in the Custom Objects of your app.</td>
+	<td colspan="2" class="labinstructions l_labstep11">11. After creating the user in the app, log onto the ACS control panel (visit my.appcelerator.com). Make sure you're working in the Development perspective. Then check the Users objects for your app. Your new user should be listed.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation9"></td>
+	<td class="labexplanations l_labstepexplanation11"></td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep12">12. In the app, capture a fugitive. Then, check the ACS control panel. You should see the fugitive data listed in the Custom Objects of your app.</td>
+</tr>
+<tr>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation12"></td>
 </tr>
 
 
