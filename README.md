@@ -1,8 +1,8 @@
 # TCD Certification Training
 
-*Draft status* -- Feb 1, 2013 -- In its initial public release, the TCD course is incomplete. Labs (and associated code) for the ACS and Debugging labs are not written. The corresponding exam has not be finalized. This note will be removed when those components are finished.
-
 This project houses the training materials needed for the Titanium Certified Developer (TCD) Training course, which corresponds to the Titanium Certified Developer (TCD) certification exam.
+
+**Current version support:** Appcelerator Titanium ver 3.2
 
 # License
 
@@ -17,25 +17,25 @@ These slides use [Crystal Clear](http://commons.wikimedia.org/wiki/Crystal_Clear
 
 ## Instructions 
 
-1. Download a copy of [presentation-engine](https://github.com/appcelerator-training/presentation-engine) to a suitable directory on your computer.
-2. Download a copy of the course slides to that same directory so that you end up with a structure like this:
+Simply download and extract the zip file to create a directory structure as shown below.  
 
 ```
 some_folder  
-   - presentation-engine (folder, must be named as shown here!)  
-   - tcd_certification (folder)  
+   - TCD Training Course (folder)  
       - index.html  <-- TOC for the whole course, open this file 
-         - 01_gettingstarted (folder)  
+      - 00courseintro (folder)  
             - index.html <-- TOC for the lesson  
-         ... etc
+      - 01gettingstarted
+      - (... additional lessons)
+      - labcode (folder containing starting/finished lab code)  
+      - presentation-engine
 ```
 
 ### Running a presentation
 
-1. Open the coursename/index.html in your browser. Safari and Chrome work best, Firefox works too.
-2. Click a lesson's name, which opens that lesson's index.html file.
-3. Click the "Notes" icon to open a separate window (you might need to override any pop-up blocker to see that window). You don't need to reload or do anything with that window. It will automatically display presenter notes as you step through the slides. 
-4. At the end of a lesson, if running Chrome, close the presenter notes window. In all browsers, click the home icon, which will take you back to the course TOC slide. Click the next lesson's title. (If running Chrome, reopen the presenter notes window.)
+1. Open the *coursename*/index.html in your browser. Safari and Chrome work best, Firefox works too.
+2. Click the "Notes" icon to open a separate window (you might need to override any pop-up blocker to see that window). You don't need to reload or do anything with that window. It will automatically display presenter notes as you step through the slides. 
+3. Click the home icon, which will take you back to the course TOC slide. Within a lesson, click the up/left arrow icon to return to that lesson's first slide.
 
 ### Navigating within a presentation
 

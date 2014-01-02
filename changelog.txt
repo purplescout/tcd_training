@@ -1,2 +1,20 @@
 Changelog
 
+Updates for Titanium SDK 3.2 - 18 December 2013
+
+Lesson 2 / Titanium Basics
+	- Updated Android Platforms slide that SDK v10 not required
+	- Updated Ti Releases slide with recent version nums
+	- Added new screenshots of the new Studio ver 3.2 user interface
+Lesson 4 / UI
+	- Updated android icon / splash slides to note xxhdpi support
+Lesson 10 / Geo/mapping
+	- Added new slides to cover new iOS module & how to,
+	- Updated code samples for iOS geo
+	- Updated lab and finished code for iOS and Android geo changes
+	- Update Maps to note new map.camera on iOS, 
+	- Updated the MapsDemo app to support new map modules
+Lesson 15 / Publishing
+	- Added slide on targeting Android versions
+
+Associated questions in the certification exam were also updated to reflect the new version 3.2 features.
