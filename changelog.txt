@@ -17,4 +17,13 @@ Lesson 10 / Geo/mapping
 Lesson 15 / Publishing
 	- Added slide on targeting Android versions
 
+The labs and sample apps have been updated as follows:
+	- For most of the sample apps, I've set the default unit to dp in the tiapp.xml. This is to fix layout issues on Android. 
+	- Unless you are running a very old version of the Android tools, apps will be built to use the Android 4.x Holo theme. Thus, these updates were made to the labs:
+		- Tab icons are now used on iOS only. They look bad on Android 4.x tabs
+		- In the multimedia lesson, I've added code to detect the Genymotion emulator and show the gallery picker rather than the camera (which Genymotion emulates)
+		- I've added demonstration code to the finished labs showing how to put the app's title in the ActionBar, which in some cases doesn't happen automatically. Please be prepared to explain the code, though you can be vague about Activities and refer students to the TCE course for the full details.
+	- Strangely, many of the starting/finished lab examples were missing the alloy.js file. I've added that throughout. Alloy now complains if that file is missing. Plus we use it in the maps lesson.
+	- I've removed the unused "address" label from the AlloyHunter app and the lab apps. That was left over from Aaron Saunder's original app on which AlloyHunter is based.
+
 Associated questions in the certification exam were also updated to reflect the new version 3.2 features.
