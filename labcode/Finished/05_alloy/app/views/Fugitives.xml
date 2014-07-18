@@ -1,7 +1,7 @@
 <Alloy>
-	<Tab id="fugitiveTab" title="Fugitives">
+	<Tab title="Fugitives">
 		<Window title="Fugitives">
-			<TableView id='fugitives'>
+			<TableView/>
 		</Window>
 	</Tab>
 </Alloy>
