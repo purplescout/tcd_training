@@ -1,9 +1,9 @@
 <Alloy>
 	<!-- Add your reference to the collection here -->
-	<Tab id="capturedTab" title="Captured">
+	<Tab title="Captured">
 		<Window title="Captured">
 			<!-- Update table tag to include reference to data collection -->
-			<TableView id='captured'>
+			<TableView >
 				<Require src="FugitiveRow"/>
 			</TableView>
 		</Window>
