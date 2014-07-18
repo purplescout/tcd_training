@@ -1,7 +1,7 @@
 <Alloy>
-	<Tab id="capturedTab" title="Captured">
+	<Tab title="Captured">
 		<Window title="Captured">
-			<TableView id='captured'/>
+			<TableView />
 		</Window>
 	</Tab>
 </Alloy>
