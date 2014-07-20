@@ -3,7 +3,7 @@
 },
 "#mapWindow":{
 	title : "Captured Location",
-	barColor: '#6d0a0c',
+	barColor: '#FC5B3F',
 	backgroundColor:'#fff'
 },
 "#mapView" : {
