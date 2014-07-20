@@ -6,9 +6,8 @@ var fugitiveCollection = Alloy.Collections.Fugitive;
  * @param {Object} _collection
  */
 function dofilter(_collection) {
-    debugger;
     return fugitiveCollection.filter(function(_i){
-        return !_i.attributes.captured
+        return !_i.attributes.captured;
     });
 }
 // ..
