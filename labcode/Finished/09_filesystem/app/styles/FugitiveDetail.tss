@@ -3,7 +3,7 @@
 },
 "#detailWindow" : {
 		layout:'vertical',
-		barColor: '#6d0a0c',
+		barColor: '#068587',
 		backgroundColor: 'transparent',
 		backgroundImage: 'images/grain.png'
 },

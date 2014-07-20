@@ -20,7 +20,7 @@ function dofilter(_collection) {
 //
 // EVENT LISTENERS
 //
-$.table.addEventListener('click', function(_e) { debugger;
+$.table.addEventListener('click', function(_e) {
     var detailController = Alloy.createController('FugitiveDetail', {
         parentTab : $.capturedTab,
         data : fugitiveCollection.get(_e.rowData.model)
