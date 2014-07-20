@@ -22,7 +22,7 @@ if (!Ti.App.Properties.hasProperty('seeded')) {
     // save all of the elements
     Alloy.Collections.Fugitive.each(function(_m) {
         _m.save();
-    })
+    });
 
     Ti.App.Properties.setString('seeded', 'yuppers');
 
