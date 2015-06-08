@@ -1,3 +1,12 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function dataTransformation(_model) {
         $.capture_button.visible = !_model.attributes.captured;
@@ -10,9 +19,18 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "FugitiveDetail";
-    arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    this.args = arguments[0] || {};
+    if (arguments[0]) {
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     $.fugitiveDetail = Alloy.createModel("Fugitive");
@@ -78,12 +96,15 @@ function Controller() {
     });
     $.__views.detailWindow.add($.__views.delete_button);
     var __alloyId7 = function() {
-        $.detailWindow.title = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["name"] : $.fugitiveDetail.get("name");
-        $.detailWindow.title = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["name"] : $.fugitiveDetail.get("name");
-        $.captured_lbl.text = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["captured"] : $.fugitiveDetail.get("captured");
-        $.captured_lbl.text = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["captured"] : $.fugitiveDetail.get("captured");
-        $.image.image = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["image"] : $.fugitiveDetail.get("image");
-        $.image.image = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["image"] : $.fugitiveDetail.get("image");
+        $.detailWindow.title = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["name"] : _.template("<%=fugitiveDetail.name%>", {
+            fugitiveDetail: $.fugitiveDetail.toJSON()
+        });
+        $.captured_lbl.text = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["captured"] : _.template("<%=fugitiveDetail.captured%>", {
+            fugitiveDetail: $.fugitiveDetail.toJSON()
+        });
+        $.image.image = _.isFunction($.fugitiveDetail.transform) ? $.fugitiveDetail.transform()["image"] : _.template("<%=fugitiveDetail.image%>", {
+            fugitiveDetail: $.fugitiveDetail.toJSON()
+        });
     };
     $.fugitiveDetail.on("fetch change destroy", __alloyId7);
     exports.destroy = function() {
@@ -116,7 +137,7 @@ function Controller() {
                 var a = Ti.UI.createAlertDialog({
                     title: "Camera Error"
                 });
-                error.code == Ti.Media.NO_CAMERA ? a.setMessage("MISSING CAMERA") : a.setMessage("Unexpected error: " + error.code);
+                a.setMessage(error.code == Ti.Media.NO_CAMERA ? "MISSING CAMERA" : "Unexpected error: " + error.code);
                 a.show();
             },
             saveToPhotoGallery: true,

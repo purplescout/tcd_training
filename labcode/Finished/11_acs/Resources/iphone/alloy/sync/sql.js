@@ -1,5 +1,5 @@
 function S4() {
-    return (0 | 65536 * (1 + Math.random())).toString(16).substring(1);
+    return (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
 }
 
 function guid() {
@@ -118,9 +118,9 @@ function Sync(method, model, opts) {
             if (!model.id) {
                 model.id = model.idAttribute === ALLOY_ID_DEFAULT ? guid() : null;
                 attrObj[model.idAttribute] = model.id;
-                model.set(attrObj, {
+                "0.9.2" === backbone.VERSION ? model.set(attrObj, {
                     silent: true
-                });
+                }) : model.set(attrObj);
             }
             var names = [], values = [], q = [];
             for (var k in columns) {
@@ -130,21 +130,14 @@ function Sync(method, model, opts) {
             }
             sql = "REPLACE INTO " + table + " (" + names.join(",") + ") VALUES (" + q.join(",") + ");";
             db = Ti.Database.open(dbName);
-            db.execute("BEGIN;");
             db.execute(sql, values);
             if (null === model.id) {
-                var sqlId = "SELECT last_insert_rowid();";
-                var rs = db.execute(sqlId);
-                if (rs && rs.isValidRow()) {
-                    model.id = rs.field(0);
-                    attrObj[model.idAttribute] = model.id;
-                    model.set(attrObj, {
-                        silent: true
-                    });
-                } else Ti.API.warn("Unable to get ID from database for model: " + model.toJSON());
-                rs && rs.close();
+                model.id = db.lastInsertRowId;
+                attrObj[model.idAttribute] = model.id;
+                "0.9.2" === backbone.VERSION ? model.set(attrObj, {
+                    silent: true
+                }) : model.set(attrObj);
             }
-            db.execute("COMMIT;");
             db.close();
             return model.toJSON();
         }();
@@ -153,27 +146,26 @@ function Sync(method, model, opts) {
       case "read":
         opts.query && opts.id && Ti.API.warn('Both "query" and "id" options were specified for model.fetch(). "id" will be ignored.');
         sql = "SELECT * FROM " + table;
-        opts.query ? sql = opts.query : opts.id && (sql += " WHERE " + model.idAttribute + " = " + opts.id);
+        opts.query ? sql = opts.query : opts.id && (sql += " WHERE " + (model.idAttribute ? model.idAttribute : ALLOY_ID_DEFAULT) + " = " + (_.isString(opts.id) ? '"' + opts.id + '"' : opts.id));
         db = Ti.Database.open(dbName);
         var rs;
         rs = _.isString(sql) ? db.execute(sql) : db.execute(sql.statement, sql.params);
-        var len = 0;
         var values = [];
+        var fieldNames = [];
+        var fieldCount = _.isFunction(rs.fieldCount) ? rs.fieldCount() : rs.fieldCount;
+        var getField = rs.field;
+        var i = 0;
+        for (;fieldCount > i; i++) fieldNames.push(rs.fieldName(i));
         while (rs.isValidRow()) {
             var o = {};
-            var fc = 0;
-            fc = _.isFunction(rs.fieldCount) ? rs.fieldCount() : rs.fieldCount;
-            _.times(fc, function(c) {
-                var fn = rs.fieldName(c);
-                o[fn] = rs.fieldByName(fn);
-            });
+            for (i = 0; fieldCount > i; i++) o[fieldNames[i]] = getField(i);
             values.push(o);
-            len++;
             rs.next();
         }
         rs.close();
         db.close();
-        model.length = len;
+        var len = values.length;
+        "0.9.2" === backbone.VERSION && (model.length = len);
         resp = 1 === len ? values[0] : values;
         break;
 
@@ -182,7 +174,6 @@ function Sync(method, model, opts) {
         db = Ti.Database.open(dbName);
         db.execute(sql, model.id);
         db.close();
-        model.id = null;
         resp = model.toJSON();
     }
     if (resp) {
@@ -230,15 +221,15 @@ function Migrate(Model) {
     db = Ti.Database.open(config.adapter.db_name);
     migrator.db = db;
     db.execute("BEGIN;");
-    if (migrations.length) for (var i = 0; migrations.length > i; i++) {
+    if (migrations.length) for (var i = 0; i < migrations.length; i++) {
         var migration = migrations[i];
         var context = {};
         migration(context);
         if (direction) {
             if (context.id > targetNumber) break;
-            if (currentNumber >= context.id) continue;
+            if (context.id <= currentNumber) continue;
         } else {
-            if (targetNumber >= context.id) break;
+            if (context.id <= targetNumber) break;
             if (context.id > currentNumber) continue;
         }
         var funcName = direction ? "up" : "down";
@@ -266,18 +257,30 @@ function installDatabase(config) {
         db.file.setRemoteBackup(false);
     }
     var rs = db.execute('pragma table_info("' + table + '");');
-    var columns = {};
-    while (rs.isValidRow()) {
-        var cName = rs.fieldByName("name");
-        var cType = rs.fieldByName("type");
-        columns[cName] = cType;
-        cName !== ALLOY_ID_DEFAULT || config.adapter.idAttribute || (config.adapter.idAttribute = ALLOY_ID_DEFAULT);
-        rs.next();
+    var cName, cType, columns = {};
+    if (rs) {
+        while (rs.isValidRow()) {
+            cName = rs.fieldByName("name");
+            cType = rs.fieldByName("type");
+            columns[cName] = cType;
+            cName !== ALLOY_ID_DEFAULT || config.adapter.idAttribute || (config.adapter.idAttribute = ALLOY_ID_DEFAULT);
+            rs.next();
+        }
+        rs.close();
+    } else {
+        {
+            config.adapter.idAttribute ? config.adapter.idAttribute : ALLOY_ID_DEFAULT;
+        }
+        for (var k in config.columns) {
+            cName = k;
+            cType = config.columns[k];
+            cName !== ALLOY_ID_DEFAULT || config.adapter.idAttribute ? k === config.adapter.idAttribute && (cType += " UNIQUE") : config.adapter.idAttribute = ALLOY_ID_DEFAULT;
+            columns[cName] = cType;
+        }
     }
     config.columns = columns;
-    rs.close();
     if (config.adapter.idAttribute) {
-        if (!_.contains(_.keys(config.columns), config.adapter.idAttribute)) throw 'config.adapter.idAttribute "' + config.adapter.idAttribute + '" not found in list of columns for table "' + table + '"\n' + "columns: [" + _.keys(config.columns).join(",") + "]";
+        if (!_.contains(_.keys(config.columns), config.adapter.idAttribute)) throw 'config.adapter.idAttribute "' + config.adapter.idAttribute + '" not found in list of columns for table "' + table + '"\ncolumns: [' + _.keys(config.columns).join(",") + "]";
     } else {
         Ti.API.info('No config.adapter.idAttribute specified for table "' + table + '"');
         Ti.API.info('Adding "' + ALLOY_ID_DEFAULT + '" to uniquely identify rows');
@@ -297,7 +300,7 @@ function installDatabase(config) {
     db.close();
 }
 
-var _ = require("alloy/underscore")._;
+var _ = require("alloy/underscore")._, backbone = require("alloy/backbone");
 
 var ALLOY_DB_DEFAULT = "_alloy_";
 

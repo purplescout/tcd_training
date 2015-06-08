@@ -1,3 +1,12 @@
+function __processArg(obj, key) {
+    var arg = null;
+    if (obj) {
+        arg = obj[key] || null;
+        delete obj[key];
+    }
+    return arg;
+}
+
 function Controller() {
     function __alloyId15(e) {
         if (e && e.fromAdapter) return;
@@ -19,7 +28,6 @@ function Controller() {
         $.__views.table.setData(rows);
     }
     function dofilter() {
-        debugger;
         return fugitiveCollection.filter(function(_i) {
             return !_i.attributes.captured;
         });
@@ -30,9 +38,16 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "Fugitives";
-    var __parentSymbol = arguments[0] ? arguments[0]["__parentSymbol"] : null;
-    arguments[0] ? arguments[0]["$model"] : null;
-    arguments[0] ? arguments[0]["__itemTemplate"] : null;
+    this.args = arguments[0] || {};
+    if (arguments[0]) {
+        var __parentSymbol = __processArg(arguments[0], "__parentSymbol");
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
+    }
     var $ = this;
     var exports = {};
     Alloy.Collections.instance("Fugitive");
