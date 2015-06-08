@@ -1,5 +1,5 @@
 <Alloy>
-    <Model src="Fugitive" instance="true" id="fugitiveDetail"> 
+    <Model src="Fugitive" instance="true" id="fugitiveDetail"/> 
 	<Window id="detailWindow" model="$.fugitiveDetail" title="{$.fugitiveDetail.name}" dataTransform="dataTransformation">
 		<Label id="captured_lbl" text="{$.fugitiveDetail.captured}" ></Label>
 		<ImageView id="image" image="{$.fugitiveDetail.image}" ></ImageView>
